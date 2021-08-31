@@ -16,14 +16,16 @@ void LoopAnalyzer::run(const MatchFinder::MatchResult &Result) {
 }
 
 void IntVarDeclAnalyzer::run(const MatchFinder::MatchResult &Result) {
-  ASTContext *Context = Result.Context;
-  const VarDecl *VD = Result.Nodes.getNodeAs<VarDecl>("intVarDecl");
-  // We do not want to convert header files!
-  ////if (!VD || !Context->getSourceManager().isWrittenInMainFile(VD->getForLoc()))
-  if (!VD)
-    return;
-  //llvm::outs() << "I`m Integer variable.\n";
-  //VD->dump();
+    ASTContext *Context = Result.Context;
+    const VarDecl *VD = Result.Nodes.getNodeAs<VarDecl>("intVarDecl");
+    // We do not want to convert header files!
+    ////if (!VD || !Context->getSourceManager().isWrittenInMainFile(VD->getForLoc()))
+    if (!VD)
+        return;
+    llvm::outs() << "Integer variable.\n";
+    // Определение и тестовый вывод основных параметров описания переменных
+    getVarDeclParameters(VD);
+    //VD->dump();
 }
 
 void IntVarDeclGlobalMemoryAnalyzer::run(const MatchFinder::MatchResult &Result) {
@@ -34,7 +36,7 @@ void IntVarDeclGlobalMemoryAnalyzer::run(const MatchFinder::MatchResult &Result)
   if (!VD)
     return;
 
-  llvm::outs() << "I`m Integer Global Memory variable.\n";
+  llvm::outs() << "I`m variable. My name is" << VD->getNameAsString() << "\n";
 
   if(VD->hasLocalStorage()) {
     llvm::outs() << "   hasLocalStorage.\n";

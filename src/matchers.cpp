@@ -45,6 +45,6 @@ void addIntVarDeclGlobalMemoryMatcher(MatchFinder &finder) {
 //==============================================================================
 void addMatchers(MatchFinder &finder) {
     addIntVarDeclMatcher(finder);
-    addIntVarDeclGlobalMemoryMatcher(finder);
+//    addIntVarDeclGlobalMemoryMatcher(finder);
     addLoopMatcher(finder);
 }
