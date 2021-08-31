@@ -17,10 +17,77 @@ void LoopAnalyzer::run(const MatchFinder::MatchResult &Result) {
 
 void IntVarDeclAnalyzer::run(const MatchFinder::MatchResult &Result) {
   ASTContext *Context = Result.Context;
-  const VarDecl *FS = Result.Nodes.getNodeAs<VarDecl>("intVarDecl");
+  const VarDecl *VD = Result.Nodes.getNodeAs<VarDecl>("intVarDecl");
   // We do not want to convert header files!
-  ////if (!FS || !Context->getSourceManager().isWrittenInMainFile(FS->getForLoc()))
-  if (!FS)
+  ////if (!VD || !Context->getSourceManager().isWrittenInMainFile(VD->getForLoc()))
+  if (!VD)
     return;
-  llvm::outs() << "Declaration of Integer variable.\n";
+  //llvm::outs() << "I`m Integer variable.\n";
+  //VD->dump();
+}
+
+void IntVarDeclGlobalMemoryAnalyzer::run(const MatchFinder::MatchResult &Result) {
+  ASTContext *Context = Result.Context;
+  const VarDecl *VD = Result.Nodes.getNodeAs<VarDecl>("intVarGlobalMemoryDecl");
+  // We do not want to convert header files!
+  ////if (!VD || !Context->getSourceManager().isWrittenInMainFile(VD->getForLoc()))
+  if (!VD)
+    return;
+
+  llvm::outs() << "I`m Integer Global Memory variable.\n";
+
+  if(VD->hasLocalStorage()) {
+    llvm::outs() << "   hasLocalStorage.\n";
+  } else {
+    llvm::outs() << "   not hasLocalStorage.\n";
+  }
+
+  if(VD->isStaticLocal()) {
+    llvm::outs() << "   isStaticLocal.\n";
+  } else {
+    llvm::outs() << "   not isStaticLocal.\n";
+  }
+
+  if(VD->hasExternalStorage()) {
+    llvm::outs() << "   hasExternalStorage.\n";
+  } else {
+    llvm::outs() << "   not hasExternalStorage.\n";
+  }
+
+  if(VD->hasGlobalStorage()) {
+    llvm::outs() << "   hasGlobalStorage.\n";
+  } else {
+    llvm::outs() << "   not hasGlobalStorage.\n";
+  }
+
+  if(VD->isLocalVarDecl()) {
+    llvm::outs() << "   isLocalVarDecl.\n";
+  } else {
+    llvm::outs() << "   not isLocalVarDecl.\n";
+  }
+
+  if(VD->isLocalVarDeclOrParm()) {
+    llvm::outs() << "   isLocalVarDeclOrParm.\n";
+  } else {
+    llvm::outs() << "   not isLocalVarDeclOrParm.\n";
+  }
+
+  if(VD->getAnyInitializer()) {
+    llvm::outs() << "   getAnyInitializer.\n";
+  } else {
+    llvm::outs() << "   not getAnyInitializer.\n";
+  }
+
+//   APValue *initVal = VD->evaluateValue();
+//   if(initVal != nullptr) {
+//     llvm::outs() << "   evaluateValue = ";
+//     if(initVal->isInt()) {
+//         llvm::outs() << initVal->getInt();
+//     }
+//     llvm::outs() << ".\n";
+//   } else {
+//     llvm::outs() << "   not evaluateValue.\n";
+//   }
+
+  //VD->dump();
 }
