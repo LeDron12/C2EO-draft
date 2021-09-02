@@ -2,8 +2,10 @@ cmake_minimum_required(VERSION 3.20)
 
 project(c2eo)
 
-set(PATH_TO_LLVM_SOURCE "/home/al/llvm-clang/")
-set(PATH_TO_LLVM_BUILD "/home/al/llvm-clang/build")
+set(PATH_TO_LLVM_SOURCE "/home/yarrya/clang-llvm/" CACHE PATH [FORCE])
+message(STATUS "PATH_TO_LLVM_SOURCE: ${PATH_TO_LLVM_SOURCE}")
+set(PATH_TO_LLVM_BUILD "${PATH_TO_LLVM_SOURCE}/build")
+message(STATUS "PATH_TO_LLVM_BUILD: ${PATH_TO_LLVM_BUILD}")
  
 include_directories("${PATH_TO_LLVM_SOURCE}/clang/include")
 include_directories("${PATH_TO_LLVM_SOURCE}/llvm/include")
