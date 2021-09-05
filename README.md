@@ -15,13 +15,13 @@ We are going to store different information.
 # Install LLVM+CLANG:
 ```
 $ wget https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-12.0.1.tar.gz
-$ mkdir clang-llvm
-$ tar -C clang-llvm -xvf llvmorg-12.0.1.tar.gz
+$ mkdir llvm-clang
+$ tar -C llvm-clang -xvf llvmorg-12.0.1.tar.gz
 ```
 
 # BUILD LLVM+CLANG:
 ```
-$ cd clang-llvm
+$ cd llvm-clang
 $ # rm -rf build
 $ mkdir build && cd $_
 $ cmake --no-warn-unused-cli -DBUILD_SHARED_LIBS:STRING=ON -DLLVM_TARGETS_TO_BUILD:STRING=X86 \
@@ -43,7 +43,7 @@ Set `PATH_TO_LLVM_SOURCE` variable to the LLVM+CLANG directory when invoking CMa
 $ cd c2eo
 $ # rm -rf build
 $ mkdir build && cd $_
-$ cmake -DCMAKE_BUILD_TYPE=Debug -DPATH_TO_LLVM_SOURCE=~/path/to/clang-llvm/ \
+$ cmake -DCMAKE_BUILD_TYPE=Debug -DPATH_TO_LLVM_SOURCE=~/path/to/llvm-clang/ \
   -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" ../src
 $ cmake --build . --target c2eo -- -j 6
 ```
