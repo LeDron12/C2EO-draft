@@ -59,18 +59,26 @@ void getVarDeclParameters(const VarDecl *VD) {
 
     // Наличие начальной инициализации
     auto isInit = VD->hasInit();
+    int value = 0;
     if(isInit) {
         llvm::outs() << "  has Initializer\n";
-        initValueAnalysis(VD);
+        initValueAnalysis(VD, value);
     } else {
         llvm::outs() << "  has not Initializer\n";
     }
 
+    if (globalStorage && !extStorage && !staticLocal)
+    {
+        llvm::outs() << "EO code:\n";
+        std::string name = varName;
+        llvm::outs() << "varint > c_" << name << "!\n";
+        llvm::outs() << "  set " << value << " > @\n";
+    }
   //VD->dump();
 }
 
 // Анализ полученного начального значения с последующим использованием
-void initValueAnalysis(const VarDecl *VD) {
+void initValueAnalysis(const VarDecl *VD, int& value) {
     APValue *initVal = VD->evaluateValue();
     if(initVal != nullptr) {
         llvm::outs() << "    Initial Value = ";

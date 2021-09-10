@@ -28,6 +28,6 @@ using namespace clang;
 void getVarDeclParameters(const VarDecl *VD);
 
 // Анализ полученного начального значения с последующим использованием
-void initValueAnalysis(const VarDecl *VD);
+void initValueAnalysis(const VarDecl *VD, int& value);
 
 #endif // __VARDECL__
