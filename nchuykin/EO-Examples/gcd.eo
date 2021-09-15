@@ -18,4 +18,4 @@
     "nod(%d, %d) = %d\n"
     (args.get 0).toInt > a
     (args.get 1).toInt > b
-    gcd a bS
+    gcd a b

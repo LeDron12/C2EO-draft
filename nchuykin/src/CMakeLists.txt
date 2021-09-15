@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.18)
 
 project(c2eo)
 
+
 set(PATH_TO_LLVM_SOURCE "~/llvm-clang/")
 set(PATH_TO_LLVM_BUILD "~/llvm-clang/build")
  
@@ -26,7 +27,7 @@ set(SOURCE_FILES
     vardecl.cpp
     analyzers.cpp
     matchers.cpp
-)
+        codeGenerator.h codeGenerator.cpp)
 
 
 #add_executable(recvistor main.cpp)

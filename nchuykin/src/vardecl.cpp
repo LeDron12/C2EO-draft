@@ -1,12 +1,13 @@
 // Функции, используемые при анализе переменных
 
 #include "vardecl.h"
+#include "codeGenerator.h"
 
 // Определение и тестовый вывод основных параметров описания переменных
 void getVarDeclParameters(const VarDecl *VD) {
     // Имя переменной
     auto varName = VD->getNameAsString();
-    llvm::outs() << "Name of variable: " << varName << "\n";
+    llvm::outs() << "Name of Variable: " << varName << "\n";
 
     // Проверка на размещение переменной в локальной памяти
     auto inLocalStorage = VD->hasLocalStorage();
@@ -69,21 +70,23 @@ void getVarDeclParameters(const VarDecl *VD) {
 
     if (globalStorage && !extStorage && !staticLocal)
     {
-        llvm::outs() << "EO code:\n";
-        std::string name = varName;
-        llvm::outs() << "varint > c_" << name << "!\n";
-        llvm::outs() << "  set " << value << " > @\n";
+        IntVariable* var = new IntVariable;
+        var->name = "c_" + varName;
+        var->type = "varint";
+        var->value  = value;
+        CodeGenerator::vars.push_back(var);
     }
   //VD->dump();
 }
 
-// Анализ полученного начального значения с последующим использованием
+// Анализ полученного начального значения с передачей значения по ссылке
 void initValueAnalysis(const VarDecl *VD, int& value) {
     APValue *initVal = VD->evaluateValue();
     if(initVal != nullptr) {
         llvm::outs() << "    Initial Value = ";
         if(initVal->isInt()) {
-            llvm::outs() << initVal->getInt();
+            value = initVal->getInt().getExtValue();
+            llvm::outs() << value;
         }
         llvm::outs() << "\n";
     } else {
