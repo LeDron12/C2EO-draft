@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program ms="279"
+         name="app.eo"
+         time="2021-09-16T11:28:15.592140Z"
+         version="0.1.19">
+   <listing>+package test12
++alias stdout org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
+
+[] &gt; var
+  memory &gt; value!
+  [y] &gt; set
+    ^.value.write y &gt; @
+  [] &gt; get
+    ^.value &gt; @
+
+[] &gt; varInt
+  "int" &gt; type
+  var &gt; @
+
+  [] &gt; toString
+    sprintf &gt; @
+      "%d"
+      ^.get
+
+# Попытка выполнить цикл
+[] &gt; app
+  varInt &gt; i!
+  seq &gt; @
+    i.set 1
+    while.
+      less.
+        i.get
+        10
+      seq
+        stdout
+          sprintf
+            "i = %d"
+            i.get
+        i.write
+          add.
+            1
+            i.get
+&lt;EOF&gt;</listing>
+   <errors/>
+   <sheets>
+      <sheet>not-empty-atoms</sheet>
+      <sheet>middle-varargs</sheet>
+      <sheet>duplicate-names</sheet>
+      <sheet>many-free-attributes</sheet>
+      <sheet>broken-aliases</sheet>
+      <sheet>duplicate-aliases</sheet>
+      <sheet>one-body</sheet>
+      <sheet>same-line-names</sheet>
+      <sheet>self-naming</sheet>
+      <sheet>add-refs</sheet>
+      <sheet>wrap-method-calls</sheet>
+      <sheet>vars-float-up</sheet>
+      <sheet>add-refs</sheet>
+   </sheets>
+   <metas>
+      <meta line="1">
+         <head>package</head>
+         <tail>test12</tail>
+         <part>test12</part>
+      </meta>
+      <meta line="2">
+         <head>alias</head>
+         <tail>stdout org.eolang.io.stdout</tail>
+         <part>stdout</part>
+         <part>org.eolang.io.stdout</part>
+      </meta>
+      <meta line="3">
+         <head>alias</head>
+         <tail>sprintf org.eolang.txt.sprintf</tail>
+         <part>sprintf</part>
+         <part>org.eolang.txt.sprintf</part>
+      </meta>
+   </metas>
+   <objects>
+      <o line="5" name="var">
+         <o base="memory" const="" line="6" name="value"/>
+         <o line="7" name="set">
+            <o line="7" name="y"/>
+            <o base=".write" line="8" method="" name="@">
+               <o base=".value" line="8" method="">
+                  <o base="^" line="8"/>
+               </o>
+               <o base="y" line="8" ref="7"/>
+            </o>
+         </o>
+         <o line="9" name="get">
+            <o base=".value" line="10" method="" name="@">
+               <o base="^" line="10"/>
+            </o>
+         </o>
+      </o>
+      <o line="12" name="varInt">
+         <o base="string" data="string" line="13" name="type">int</o>
+         <o base="var" line="14" name="@" ref="5"/>
+         <o line="16" name="toString">
+            <o base="sprintf" line="17" name="@">
+               <o base="string" data="string" line="18">%d</o>
+               <o base=".get" line="19" method="">
+                  <o base="^" line="19"/>
+               </o>
+            </o>
+         </o>
+      </o>
+      <o line="22" name="app">
+         <o base="varInt" const="" line="23" name="i" ref="12"/>
+         <o base="seq" line="24" name="@">
+            <o base=".set" line="25" method="">
+               <o base="i" line="25" ref="23"/>
+               <o base="int" data="int" line="25">1</o>
+            </o>
+            <o base=".while" line="26">
+               <o base=".less" line="27">
+                  <o base=".get" line="28" method="">
+                     <o base="i" line="28" ref="23"/>
+                  </o>
+                  <o base="int" data="int" line="29">10</o>
+               </o>
+               <o base="seq" line="30">
+                  <o base="stdout" line="31">
+                     <o base="sprintf" line="32">
+                        <o base="string" data="string" line="33">i = %d</o>
+                        <o base=".get" line="34" method="">
+                           <o base="i" line="34" ref="23"/>
+                        </o>
+                     </o>
+                  </o>
+                  <o base=".write" line="35" method="">
+                     <o base="i" line="35" ref="23"/>
+                     <o base=".add" line="36">
+                        <o base="int" data="int" line="37">1</o>
+                        <o base=".get" line="38" method="">
+                           <o base="i" line="38" ref="23"/>
+                        </o>
+                     </o>
+                  </o>
+               </o>
+            </o>
+         </o>
+      </o>
+   </objects>
+</program>

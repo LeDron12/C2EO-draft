@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program ms="332"
+         name="app.eo"
+         time="2021-09-08T08:03:14.470009Z"
+         version="0.1.19">
+   <listing>+package test08
++alias stdOut org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
+
+# Глобальное пространство
+# Демонстрация ошибки, связанной с именами атрибутов с большими буквами
+
+# Это выполняется
+#[] &gt; global
+#  [x1] &gt; cover
+#    x1 &gt; @
+
+# Это не выполняется
+#[] &gt; global
+#  [xX] &gt; cover
+#    xX &gt; @
+
+# Это не выполняется
+#[] &gt; global
+#  [x_y] &gt; cover
+#    x_y &gt; @
+
+# Это выполняется
+[] &gt; global
+  [x] &gt; cover
+    x &gt; @
+
+  cover 666 &gt; value
+
+  [] &gt; main
+    stdOut &gt; @
+      sprintf
+        "%d\n"
+        ^.value
+
+# Попытка запустить некоторый объект,
+# содержащий незапускаемый внешний объект
+[] &gt; app
+  global.main &gt; @
+&lt;EOF&gt;</listing>
+   <errors>
+      <error check="broken-aliases" line="2" sheet="broken-aliases" step="4">The alias is invalid: "stdOut org.eolang.io.stdout"</error>
+   </errors>
+   <sheets>
+      <sheet>not-empty-atoms</sheet>
+      <sheet>middle-varargs</sheet>
+      <sheet>duplicate-names</sheet>
+      <sheet>many-free-attributes</sheet>
+      <sheet>broken-aliases</sheet>
+      <sheet>duplicate-aliases</sheet>
+      <sheet>one-body</sheet>
+      <sheet>same-line-names</sheet>
+      <sheet>self-naming</sheet>
+      <sheet>add-refs</sheet>
+      <sheet>wrap-method-calls</sheet>
+      <sheet>vars-float-up</sheet>
+      <sheet>add-refs</sheet>
+      <sheet>resolve-aliases</sheet>
+      <sheet>resolve-aliases</sheet>
+      <sheet>add-default-package</sheet>
+      <sheet>broken-refs</sheet>
+      <sheet>unknown-names</sheet>
+      <sheet>noname-attributes</sheet>
+      <sheet>globals-to-abstracts</sheet>
+      <sheet>remove-refs</sheet>
+      <sheet>abstracts-float-up</sheet>
+      <sheet>remove-levels</sheet>
+      <sheet>add-refs</sheet>
+      <sheet>fix-missed-names</sheet>
+      <sheet>broken-refs</sheet>
+      <sheet>pre-classes</sheet>
+      <sheet>pre-junit</sheet>
+      <sheet>pre-attrs</sheet>
+      <sheet>pre-varargs</sheet>
+   </sheets>
+   <metas>
+      <meta line="1">
+         <head>package</head>
+         <tail>test08</tail>
+         <part>test08</part>
+      </meta>
+      <meta line="2">
+         <head>alias</head>
+         <tail>stdOut org.eolang.io.stdout</tail>
+         <part>stdOut</part>
+         <part>org.eolang.io.stdout</part>
+      </meta>
+      <meta line="3">
+         <head>alias</head>
+         <tail>sprintf org.eolang.txt.sprintf</tail>
+         <part>sprintf</part>
+         <part>org.eolang.txt.sprintf</part>
+      </meta>
+   </metas>
+   <objects>
+      <class line="24" name="global" original-name="global">
+         <attr name="cover">
+            <bound>
+               <o base="global$cover" cut="0" line="25" name="cover" ref="25">
+                  <o as="value" base="value" level="1" ref="28"/>
+                  <o as="main" base="main" level="1" ref="30"/>
+               </o>
+            </bound>
+         </attr>
+         <attr name="value">
+            <bound>
+               <o base="cover" line="28" name="value" ref="25">
+                  <o base="org.eolang.int" data="int" line="28">666</o>
+               </o>
+            </bound>
+         </attr>
+         <attr name="main">
+            <bound>
+               <o base="global$main" cut="5" line="30" name="main" ref="30">
+                  <o as="cover" base="cover" level="1" ref="25"/>
+                  <o as="value" base="value" level="1" ref="28"/>
+               </o>
+            </bound>
+         </attr>
+      </class>
+      <class ancestors="1"
+             line="25"
+             name="global$cover"
+             original-name="cover"
+             parent="global">
+         <attr name="x">
+            <free>
+               <o line="25" name="x"/>
+            </free>
+         </attr>
+         <attr name="@">
+            <bound>
+               <o base="x" line="26" name="@" ref="25"/>
+            </bound>
+         </attr>
+         <o level="1" line="25.28" name="value"/>
+         <o level="1" line="25.30" name="main"/>
+      </class>
+      <class ancestors="1"
+             line="30"
+             name="global$main"
+             original-name="main"
+             parent="global">
+         <attr name="@">
+            <bound>
+               <o base="org.eolang.io.stdout" line="31" name="@">
+                  <o base="org.eolang.txt.sprintf" line="32">
+                     <o base="org.eolang.string" data="string" line="33">%d\n</o>
+                     <o base=".value" line="34" method="">
+                        <o base="^" line="34"/>
+                     </o>
+                  </o>
+               </o>
+            </bound>
+         </attr>
+         <o level="1" line="30.25" name="cover"/>
+         <o level="1" line="30.28" name="value"/>
+      </class>
+      <class line="38" name="app" original-name="app">
+         <attr name="@">
+            <bound>
+               <o base=".main" line="39" method="" name="@">
+                  <o base="global" line="39" ref="24"/>
+               </o>
+            </bound>
+         </attr>
+      </class>
+   </objects>
+</program>

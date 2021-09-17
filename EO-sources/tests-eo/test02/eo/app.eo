@@ -5,7 +5,7 @@
 [x] > cover
   x > @
 
-# cover 555 > value
+#cover 555 > value
 
 [] > app
   cover 555 > value

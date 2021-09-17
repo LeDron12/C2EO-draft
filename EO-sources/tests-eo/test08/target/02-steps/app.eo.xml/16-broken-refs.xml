@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program ms="332"
+         name="app.eo"
+         time="2021-09-08T08:03:14.470009Z"
+         version="0.1.19">
+   <listing>+package test08
++alias stdOut org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
+
+# Глобальное пространство
+# Демонстрация ошибки, связанной с именами атрибутов с большими буквами
+
+# Это выполняется
+#[] &gt; global
+#  [x1] &gt; cover
+#    x1 &gt; @
+
+# Это не выполняется
+#[] &gt; global
+#  [xX] &gt; cover
+#    xX &gt; @
+
+# Это не выполняется
+#[] &gt; global
+#  [x_y] &gt; cover
+#    x_y &gt; @
+
+# Это выполняется
+[] &gt; global
+  [x] &gt; cover
+    x &gt; @
+
+  cover 666 &gt; value
+
+  [] &gt; main
+    stdOut &gt; @
+      sprintf
+        "%d\n"
+        ^.value
+
+# Попытка запустить некоторый объект,
+# содержащий незапускаемый внешний объект
+[] &gt; app
+  global.main &gt; @
+&lt;EOF&gt;</listing>
+   <errors>
+      <error check="broken-aliases" line="2" sheet="broken-aliases" step="4">The alias is invalid: "stdOut org.eolang.io.stdout"</error>
+   </errors>
+   <sheets>
+      <sheet>not-empty-atoms</sheet>
+      <sheet>middle-varargs</sheet>
+      <sheet>duplicate-names</sheet>
+      <sheet>many-free-attributes</sheet>
+      <sheet>broken-aliases</sheet>
+      <sheet>duplicate-aliases</sheet>
+      <sheet>one-body</sheet>
+      <sheet>same-line-names</sheet>
+      <sheet>self-naming</sheet>
+      <sheet>add-refs</sheet>
+      <sheet>wrap-method-calls</sheet>
+      <sheet>vars-float-up</sheet>
+      <sheet>add-refs</sheet>
+      <sheet>resolve-aliases</sheet>
+      <sheet>resolve-aliases</sheet>
+      <sheet>add-default-package</sheet>
+      <sheet>broken-refs</sheet>
+   </sheets>
+   <metas>
+      <meta line="1">
+         <head>package</head>
+         <tail>test08</tail>
+         <part>test08</part>
+      </meta>
+      <meta line="2">
+         <head>alias</head>
+         <tail>stdOut org.eolang.io.stdout</tail>
+         <part>stdOut</part>
+         <part>org.eolang.io.stdout</part>
+      </meta>
+      <meta line="3">
+         <head>alias</head>
+         <tail>sprintf org.eolang.txt.sprintf</tail>
+         <part>sprintf</part>
+         <part>org.eolang.txt.sprintf</part>
+      </meta>
+   </metas>
+   <objects>
+      <o line="24" name="global">
+         <o line="25" name="cover">
+            <o line="25" name="x"/>
+            <o base="x" line="26" name="@" ref="25"/>
+         </o>
+         <o base="cover" line="28" name="value" ref="25">
+            <o base="org.eolang.int" data="int" line="28">666</o>
+         </o>
+         <o line="30" name="main">
+            <o base="org.eolang.io.stdout" line="31" name="@">
+               <o base="org.eolang.txt.sprintf" line="32">
+                  <o base="org.eolang.string" data="string" line="33">%d\n</o>
+                  <o base=".value" line="34" method="">
+                     <o base="^" line="34"/>
+                  </o>
+               </o>
+            </o>
+         </o>
+      </o>
+      <o line="38" name="app">
+         <o base=".main" line="39" method="" name="@">
+            <o base="global" line="39" ref="24"/>
+         </o>
+      </o>
+   </objects>
+</program>
