@@ -9,7 +9,7 @@ long long t = 100ll;
 // _Bool boolVal01;
 // _Bool boolVal02 = 1;
 bool boolVal01;
-bool boolVal02 = 1;
+bool boolVal02 = true;
 static int a = 666;
 extern char c;
 char ch = 'a';
