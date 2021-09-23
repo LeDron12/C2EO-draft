@@ -22,14 +22,14 @@ set(SOURCE_FILES
     vardecl.h
     analyzers.h
     matchers.h
-    #generator.h
+    generator.h
 
     # Sources
     main.cpp
     vardecl.cpp
     analyzers.cpp
     matchers.cpp
-    #generator.cpp
+    generator.cpp
 )
 
 

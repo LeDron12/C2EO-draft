@@ -3,6 +3,7 @@
 */
 
 #include "matchers.h"
+#include "generator.h"
 
 
 // Apply a custom category to all command-line options so that they are the
@@ -21,6 +22,14 @@ static cl::extrahelp MoreHelp("\nMore help text...\n");
 //--------------------------------------------------------------------------------------------------
 // Главная функция, обеспечивающая начальный запуск и обход AST
 int main(int argc, const char **argv) {
+
+    GlobalSpaceGen globGen;
+    GlobalVarGen::globalSpaceGenPtr = &globGen;
+    std::string globCode;
+
+    ApplicationGen appGen;
+    std::string appCode;
+
     if (argc < 2) {
         llvm::errs() << "Incorrect command line format. Necessary: recvisitor <C-file-name>\n";
         return -1;
@@ -42,17 +51,24 @@ int main(int argc, const char **argv) {
 
 ////    Matchers matchers;
 ////    return Tool.run(matchers.getFrontEndActionFactory());
-     LoopAnalyzer loopAnalyzer;
-     MatchFinder finder;
-     addMatchers(finder);
+    LoopAnalyzer loopAnalyzer;
+    MatchFinder finder;
+    addMatchers(finder);
 //     Finder.addMatcher(LoopMatcher, &loopAnalyzer);
 // 
-     auto result = Tool.run(newFrontendActionFactory(&finder).get());
+    auto result = Tool.run(newFrontendActionFactory(&finder).get());
 
 //         CodeGenerator::getCodeToConsole();
 
 //         CodeGenerator::getCodeToFile("test.eo");
 //         llvm::outs() << "code printed to file " << "test.eo" << "\n";
+    globGen.Generate(globCode);
+    llvm::outs() << "\n===================================\n";
+    llvm::outs() << globCode;
 
-     return result;
+    llvm::outs() << "\n===================================\n";
+    appGen.Generate(appCode);
+    llvm::outs() << appCode;
+
+    return result;
 }

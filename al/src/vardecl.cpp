@@ -1,7 +1,7 @@
 // Функции, используемые при анализе переменных
 
 #include "vardecl.h"
-//#include "generator.h"
+#include "generator.h"
 
 // Определение и тестовый вывод основных параметров описания переменных
 void getVarDeclParameters(const VarDecl *VD) {
@@ -43,20 +43,27 @@ void getVarDeclParameters(const VarDecl *VD) {
     }
     //auto kind = typePtr->getKind();
 
+    std::string strType = "";
+    
     if(typePtr->isCharType()) {
-        if(typePtr->isSignedIntegerType())
+        if(typePtr->isSignedIntegerType()) {
             llvm::outs() << "    -->signedCharType\n";
-        else
+        } else {
             llvm::outs() << "    -->unsignedCharType\n";
+        }
+        strType = "varchar";
     } else if(typePtr->isBooleanType()) {
         llvm::outs() << "    -->isBooleanType\n";
+        strType = "varbool";
     } else if(typePtr->isRealFloatingType()) {
         llvm::outs() << "    -->isRealFloatingType\n";
+        strType = "varfloat";
     } else if(typePtr->isIntegerType()) {
         if(typePtr->isSignedIntegerType())
             llvm::outs() << "    -->signedIntegerType\n";
         else
             llvm::outs() << "    -->unsignedIntegerType\n";
+        strType = "varint";
     }
 
     llvm::outs() << "  !!! class name = " << typePtr->getTypeClassName() << "\n";
@@ -122,46 +129,69 @@ void getVarDeclParameters(const VarDecl *VD) {
     }
     // Наличие начальной инициализации
     auto isInit = VD->hasInit();
-    std::string str = "";
+    std::string strValue = "";
     if(isInit) {
         llvm::outs() << "  has Initializer\n";
-        initValueAnalysis(VD, str);
+        initValueAnalysis(VD, strValue);
     } else {
         llvm::outs() << "  has not Initializer\n";
     }
-/*
-    // Проверка, что целочисленная переменная является глобальной
+
+    // Проверка, что переменная является глобальной
     if (globalStorage && !extStorage && !staticLocal)
     {
-        //!! можно заменить на автоматическую память или вообще убрать, породив только строку
-        IntVariable* var = new IntVariable; !!
+        // Формируется глобальная переменная со всеми атрибутами
+        GlobalVarGen* var = new GlobalVarGen; 
 
-        var->name = "c_" + varName;
-        var->type = "varint";
-        var->value  = value;
-        CodeGenerator::vars.push_back(var);
+        var->name = "g_" + varName;
+        var->type = strType;
+        var->value  = strValue;
+        var->globalSpaceGenPtr->Add(var);
     }
-*/
-  //VD->dump();
+
+    //VD->dump();
 }
 
 // Анализ полученного начального значения с тестовым выводом его
 // и формированием строки со значением на выходе
 void initValueAnalysis(const VarDecl *VD, std::string &str) {
+    // Анализ типа переменной для корректного преобразования в тип Eolang
+    auto qualType = VD->getType();      // квалифицированный тип (QualType)
+    auto typePtr = qualType.getTypePtr();   // указатель на тип (Type)
+
+    // Анализ размера переменной для определения разновидности данных
+    auto typeInfo = VD->getASTContext().getTypeInfo(qualType);
+    auto size = typeInfo.Width;
+    //auto align = typeInfo.Align;  // не нужен
+
+
+
     APValue *initVal = VD->evaluateValue();
     if(initVal != nullptr) {
         llvm::outs() << "    Initial Value = ";
         if(initVal->isInt()) {
             auto intValue = initVal->getInt().getExtValue();
-            llvm::outs() << intValue;
-            str = std::to_string(intValue);
-        } else if(initVal->isFloat()) {
-            //auto floatValue = initVal->getFloat().convertToFloat();
+            //llvm::outs() << intValue;
+            if(typePtr->isBooleanType()) {
+                if(intValue == 0) {str = "false";}
+                else {str = "true";}
+            } else if(typePtr->isCharType()) {
+                str = "'";
+                str += char(intValue);
+                str += "'";
+            } else {
+                str = std::to_string(intValue); // просто целое число
+            }
+        } else if(initVal->isFloat() && (size == 64)) {
             auto floatValue = initVal->getFloat().convertToDouble();
-            llvm::outs() << floatValue;
+            //llvm::outs() << floatValue;
+            str = std::to_string(floatValue);
+        } else if(initVal->isFloat() && (size == 32)) {
+            auto floatValue = initVal->getFloat().convertToFloat();
+            //llvm::outs() << floatValue;
             str = std::to_string(floatValue);
         }
-        llvm::outs() << "\n";
+        llvm::outs() << str << "\n";
     } else {
         llvm::outs() << "    no Initial Value\n";
     }

@@ -1,60 +1,59 @@
 #include <sstream>
-#include <llvm/Support/raw_ostream.h>
+#include <iostream>
+#include <string>
 #include <fstream>
 
-//#include "generator.h"
+#include "generator.h"
 
 
-std::vector<Variable*> CodeGenerator::vars = std::vector<Variable*>();
+//--------------------------------------------------------------------------------------------------
+GlobalSpaceGen* GlobalVarGen::globalSpaceGenPtr = nullptr;
 
-void CodeGenerator::getCodeToConsole() {
-    llvm::outs() << getCode();
+//--------------------------------------------------------------------------------------------------
+void GlobalVarGen::Generate(std::string &str) {
+    str = type;
+    str += " > ";
+    str += name;
 }
 
-std::string CodeGenerator::getCode() {
-    std::stringstream ss;
-    ss << "+package c2eo\n\n";
-    ss <<  "+alias varint c2eo.varInt\n";
-    ss <<  "+alias varint c2eo.varFloat\n\n";
+//--------------------------------------------------------------------------------------------------
+void GlobalSpaceGen::Generate(std::string &str) {
+    str =
+        "+package c2eo\n\n"
+        "+alias varint c2eo.varInt\n"
+        "+alias varint c2eo.varFloat\n\n"
 
-    ss <<  "[arg] > filenameC\n";
-    for (Variable* v : vars)
-    {
-        ss <<  "  " << v->type <<" < " << v->name << "!\n";
+        "[arg] > global\n";
+
+    // Формирование списка глобальных объектов
+    std::string strObj = "";
+    for(auto globalObject: globalObjects) {
+        globalObject->Generate(strObj);
+        str += "  ";
+        str += strObj;
+        str += "\n";
     }
-    ss<<"\n";
-
-    ss <<  "  [arg] > main\n";
-    ss <<  "    \"now main is empty\" > @\n\n";
-
-    ss <<  "  seq > @\n";
-    for (Variable* v : vars)
-    {
-        ss <<  "    " << v->name <<".set " << v->getValue() << "\n";
-    }
-    ss <<  "\n    main arg\n";
-    ss <<  "[args...] > app\n";
-    ss <<  "  seq > @\n";
-    ss <<  "    filenameC args\n";
-    return ss.str();
+    str += "\n";
 }
 
-void CodeGenerator::getCodeToFile(const char* filename) {
-    std::ofstream out(filename);
-    out << getCode();
-    out.close();
-
+//........................................................................
+// Добавление очередного объекта к глобальному пространству
+void GlobalSpaceGen::Add(AbstractGen* obj) {
+    globalObjects.push_back(obj);
 }
 
-CodeGenerator::~CodeGenerator() {
-    for (Variable* v : vars)
-    {
-        delete v;
-    }
+//--------------------------------------------------------------------------------------------------
+void ApplicationGen::Generate(std::string &str) {
+    str = 
+        "+package c2eo\n\n"
+        "+alias global c2eo.global\n\n"
+
+        "[args...] > app\n"
+        "  seq > @\n"
+        "    global args\n";
 }
 
-std::string IntVariable::getValue() {
-    std::stringstream  ss;
-    ss << value;
-    return ss.str();
+//--------------------------------------------------------------------------------------------------
+void FullGen::Generate(std::string &str) {
+    
 }
