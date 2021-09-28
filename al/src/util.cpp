@@ -31,7 +31,7 @@ void createGlobal(std::vector<std::string> &text) {
     text.push_back(
         "+package c2eo\n\n"
         "+alias varint c2eo.varInt\n"
-        "+alias varint c2eo.varFloat\n\n"
+        "+alias varfloat c2eo.varFloat\n\n"
 
         "[arg] > global\n"
     );

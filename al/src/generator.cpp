@@ -7,7 +7,7 @@
 
 
 //--------------------------------------------------------------------------------------------------
-GlobalSpaceGen* GlobalVarGen::globalSpaceGenPtr = nullptr;
+GlobalSpaceGen* AbstractGen::globalSpaceGenPtr = nullptr;
 
 //--------------------------------------------------------------------------------------------------
 void GlobalVarGen::Generate(std::string &str) {
@@ -20,6 +20,26 @@ void GlobalVarGen::GenValue(std::string &str) {
     str = name;
     str += ".set ";
     str += value;
+}
+
+//--------------------------------------------------------------------------------------------------
+void GlobalFuncGen::Generate(std::string &str) {
+    // Первоначально осуществляется генерация списка атрибутов
+    str = "[";
+    if(name == "main") {
+        str += "arg] > main\n";
+    } else {
+        for(auto paramName: paramNames) {
+            str += paramName;
+            str += ", ";
+        }
+        str += "ret_param_xxxx] > ";
+        str += name;
+        str += "\n";
+    }
+    // Далее идет формирование тела функции, которое пока не прописано
+    str += "    seq > @\n";
+    str += "      ...\n";
 }
 
 //--------------------------------------------------------------------------------------------------
