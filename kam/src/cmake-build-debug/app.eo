@@ -1,9 +1,0 @@
-+package c2eo
-
-+alias global c2eo.global
-+alias sprintf org.org.eolang.txt.sprintf
-+alias stdout org.org.eolang.io.stdout
-
-[args...] > app
-  seq > @
-    global args
