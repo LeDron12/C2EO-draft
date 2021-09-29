@@ -1,0 +1,14 @@
+  varint > g_intVar01
+  varint > g_intVar02
+  varint > g_x
+  varfloat > g_y2
+  varint > g_t
+  varbool > g_boolVal01
+  varbool > g_boolVal02
+  varint > g_a
+  varchar > g_c
+  varchar > g_ch
+  [ret_param_xxxx] > g_f
+    seq > @
+      ...
+

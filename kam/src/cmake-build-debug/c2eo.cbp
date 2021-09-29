@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="c2eo"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/andrew/c2eo-draft/kam/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/andrew/c2eo-draft/kam/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/andrew/c2eo-draft/kam/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="c2eo">
+				<Option output="/home/andrew/c2eo-draft/kam/src/cmake-build-debug/c2eo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/andrew/c2eo-draft/kam/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/andrew/llvm-clang/clang/include"/>
+					<Add directory="/home/andrew/llvm-clang/llvm/include"/>
+					<Add directory="/home/andrew/llvm-clang/build/tools/clang/include"/>
+					<Add directory="/home/andrew/llvm-clang/build/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/10.2.0/../../../../include/c++/10.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/10.2.0/../../../../include/c++/10.2.0/x86_64-unknown-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/10.2.0/../../../../include/c++/10.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/10.2.0/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/10.2.0/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 c2eo"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="c2eo/fast">
+				<Option output="/home/andrew/c2eo-draft/kam/src/cmake-build-debug/c2eo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/andrew/c2eo-draft/kam/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/andrew/llvm-clang/clang/include"/>
+					<Add directory="/home/andrew/llvm-clang/llvm/include"/>
+					<Add directory="/home/andrew/llvm-clang/build/tools/clang/include"/>
+					<Add directory="/home/andrew/llvm-clang/build/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/10.2.0/../../../../include/c++/10.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/10.2.0/../../../../include/c++/10.2.0/x86_64-unknown-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/10.2.0/../../../../include/c++/10.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/10.2.0/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/10.2.0/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 c2eo/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/andrew/c2eo-draft/kam/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/andrew/c2eo-draft/kam/src/analyzers.cpp">
+			<Option target="c2eo"/>
+		</Unit>
+		<Unit filename="/home/andrew/c2eo-draft/kam/src/analyzers.h">
+			<Option target="c2eo"/>
+		</Unit>
+		<Unit filename="/home/andrew/c2eo-draft/kam/src/funcdecl.cpp">
+			<Option target="c2eo"/>
+		</Unit>
+		<Unit filename="/home/andrew/c2eo-draft/kam/src/funcdecl.h">
+			<Option target="c2eo"/>
+		</Unit>
+		<Unit filename="/home/andrew/c2eo-draft/kam/src/generator.cpp">
+			<Option target="c2eo"/>
+		</Unit>
+		<Unit filename="/home/andrew/c2eo-draft/kam/src/generator.h">
+			<Option target="c2eo"/>
+		</Unit>
+		<Unit filename="/home/andrew/c2eo-draft/kam/src/main.cpp">
+			<Option target="c2eo"/>
+		</Unit>
+		<Unit filename="/home/andrew/c2eo-draft/kam/src/matchers.cpp">
+			<Option target="c2eo"/>
+		</Unit>
+		<Unit filename="/home/andrew/c2eo-draft/kam/src/matchers.h">
+			<Option target="c2eo"/>
+		</Unit>
+		<Unit filename="/home/andrew/c2eo-draft/kam/src/util.cpp">
+			<Option target="c2eo"/>
+		</Unit>
+		<Unit filename="/home/andrew/c2eo-draft/kam/src/util.h">
+			<Option target="c2eo"/>
+		</Unit>
+		<Unit filename="/home/andrew/c2eo-draft/kam/src/vardecl.cpp">
+			<Option target="c2eo"/>
+		</Unit>
+		<Unit filename="/home/andrew/c2eo-draft/kam/src/vardecl.h">
+			<Option target="c2eo"/>
+		</Unit>
+		<Unit filename="/home/andrew/c2eo-draft/kam/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
