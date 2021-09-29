@@ -1,4 +1,5 @@
-# c2eo
-
-Попытка сформировать основу транспилятора C2EO, используя libtooling и libmatcher
-
+# Run
+$ mkdir build && cd $_
+cmake ../
+make
+./c2eo <path/program.c>
