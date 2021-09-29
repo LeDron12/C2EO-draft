@@ -90,10 +90,11 @@ void ApplicationGen::Generate(std::string &str, std::vector<AbstractGen*> *globa
         "[args...] > app\n"
         "  seq > @\n"
         "    global args\n";
-
+#ifdef _DEBUG
     for(auto globalObj : *globalObjects){
         globalObj->PrintValue(str);
     }
+#endif
 }
 
 //--------------------------------------------------------------------------------------------------

@@ -45,7 +45,7 @@ $ cd c2eo
 $ # rm -rf build
 $ mkdir build && cd $_
 $ cmake -DCMAKE_BUILD_TYPE=Debug -DPATH_TO_LLVM_SOURCE=~/path/to/llvm-clang/ \
-  -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" ../src
+  -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" ../al/src
 $ cmake --build . --target c2eo -- -j 6
 ```
 
