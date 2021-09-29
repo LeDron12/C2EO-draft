@@ -36,8 +36,8 @@ struct GlobalVarGen: AbstractGen {
     std::string name;       // идентификатор переменной
     std::string type;       // тип переменной
     std::string value;      // значение переменной
-    void Generate(std::string &str);
-    void GenValue(std::string &str);
+    virtual void Generate(std::string &str);
+    virtual void GenValue(std::string &str);
 };
 
 //-------------------------------------------------------------------------------------------------
@@ -48,7 +48,8 @@ struct GlobalFuncGen: AbstractGen {
     std::vector<std::string> paramNames;    // список имен параметров (типы не нужны)
     // Возращаемый параметры передается как дополнительный атрибут с некоторым именем,
     // которое не должно нигде встречаться в другом контексте.
-    void Generate(std::string &str);
+    virtual void Generate(std::string &str);
+    virtual void GenValue(std::string &str);
 };
 
 //-------------------------------------------------------------------------------------------------
