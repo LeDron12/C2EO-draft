@@ -11,9 +11,9 @@ GlobalSpaceGen* AbstractGen::globalSpaceGenPtr = nullptr;
 
 //--------------------------------------------------------------------------------------------------
 void GlobalVarGen::PrintValue(std::string &str) {
-    str += "  (stdout ";
+    str += "    stdout ";
     str += name;
-    str += ".toString ) > @\n";
+    str += ".toString\n";
 }
 
 void GlobalVarGen::Generate(std::string &str) {
