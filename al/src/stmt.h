@@ -27,7 +27,7 @@ using namespace clang;
 //-------------------------------------------------------------------------------------------------
 
 // Определение и тестовый вывод основных параметров составного оператора
-void getCompoundStmtParameters(const CompoundStmt* CS, int shift = 0l);
+void getCompoundStmtParameters(const CompoundStmt* CS, int shift = 0);
 
 // Анализ полученного начального значения с последующим использованием
 //void initValueAnalysis(const VarDecl *VD, std::string &str);

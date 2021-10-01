@@ -42,6 +42,12 @@ void GlobalFuncGen::Generate(std::string &str) {
     str += "      ...\n";
 }
 
+void GlobalFuncGen::GenValue(std::string &str) {
+    if(name == "main") {
+        str += "\n    main arg\n";
+    }
+}
+
 //--------------------------------------------------------------------------------------------------
 void GlobalSpaceGen::Generate(std::string &str) {
     str = "";
@@ -57,8 +63,8 @@ void GlobalSpaceGen::Generate(std::string &str) {
 
 void GlobalSpaceGen::GenValue(std::string &str) {
     // Формирование списка инициализаций
-    std::string strInit = "";
     for(auto globalObject: globalObjects) {
+        std::string strInit = "";
         globalObject->GenValue(strInit);
         str += "    ";
         str += strInit;
