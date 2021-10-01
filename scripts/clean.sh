@@ -1,7 +1,5 @@
-for fn in `find ../tests -name "*.eo"`; do
-    eval " rm -v $fn"
-done
+#!/bin/bash
 
-for fn in `find ../tests -name "*.log"`; do
-    eval " rm -v $fn"
+for fn in `find ../tests -name "*.c"`; do
+    eval " rm -rfv ${fn%%.c}"
 done

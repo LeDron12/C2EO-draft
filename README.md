@@ -39,7 +39,9 @@ $ git clone https://github.com/kreofil/C2EO-draft.git c2eo
 ```
 
 # Configuration C2EO. 
-Set `PATH_TO_LLVM_SOURCE` variable to the LLVM+CLANG directory when invoking CMake::
+* Set `PATH_TO_LLVM_SOURCE` variable to the LLVM+CLANG directory when invoking CMake;
+* Set `-DCMAKE_BUILD_TYPE` variable to the Debug state, if you want to output the values of all global variables 
+(works only for ../kam/src);
 ```
 $ cd c2eo
 $ # rm -rf build
@@ -50,7 +52,10 @@ $ cmake --build . --target c2eo -- -j 6
 ```
 
 # Run 
+Use `--` at the end of command below to skip all errors:
 ```
 $ ./c2eo file-name.c
 ```
 
+# Tests
+[here](./scripts/readme.md)
