@@ -38,9 +38,10 @@ int main(int argc, const char** argv) {
     }
 
     // TODO: fix
-    std::string path = "/";
-    if (argc > 3 && strcmp("-o", argv[argc - 2]) == 0) {
-        path = argv[argc - 1] + path;
+    std::string path = "";
+    if (argc > 3 && strcmp("-d", argv[argc - 2]) == 0) {
+        path = argv[argc - 1];
+        llvm::errs() << path;
         argc -= 2;
     }
 
