@@ -1,26 +1,102 @@
-int func240();
-static int func241();
-extern int func242();
-const int func243();
-static const int func244();
-extern const int func245();
-volatile int func246();
-static volatile int func247();
-extern volatile int func248();
-const volatile int func249();
-static const volatile int func250();
-extern const volatile int func251();
-inline int func252();
-static inline int func253();
-extern inline int func254();
-const inline int func255();
-static const inline int func256();
-extern const inline int func257();
-volatile inline int func258();
-static volatile inline int func259();
-extern volatile inline int func260();
-const volatile inline int func261();
-static const volatile inline int func262();
-extern const volatile inline int func263();
+#include "stdio.h"
 
-void main() {}
+int func0() {
+	return 0;
+}
+static int func1() {
+	return 0;
+}
+extern int func2() {
+	return 0;
+}
+const int func3() {
+	return 0;
+}
+static const int func4() {
+	return 0;
+}
+extern const int func5() {
+	return 0;
+}
+volatile int func6() {
+	return 0;
+}
+static volatile int func7() {
+	return 0;
+}
+extern volatile int func8() {
+	return 0;
+}
+const volatile int func9() {
+	return 0;
+}
+static const volatile int func10() {
+	return 0;
+}
+extern const volatile int func11() {
+	return 0;
+}
+inline __attribute__((always_inline)) int func12() {
+	return 0;
+}
+static inline __attribute__((always_inline)) int func13() {
+	return 0;
+}
+extern inline __attribute__((always_inline)) int func14() {
+	return 0;
+}
+const inline __attribute__((always_inline)) int func15() {
+	return 0;
+}
+static const inline __attribute__((always_inline)) int func16() {
+	return 0;
+}
+extern const inline __attribute__((always_inline)) int func17() {
+	return 0;
+}
+volatile inline __attribute__((always_inline)) int func18() {
+	return 0;
+}
+static volatile inline __attribute__((always_inline)) int func19() {
+	return 0;
+}
+extern volatile inline __attribute__((always_inline)) int func20() {
+	return 0;
+}
+const volatile inline __attribute__((always_inline)) int func21() {
+	return 0;
+}
+static const volatile inline __attribute__((always_inline)) int func22() {
+	return 0;
+}
+extern const volatile inline __attribute__((always_inline)) int func23() {
+	return 0;
+}
+
+int main() {
+	printf("%d\n", func0());
+	printf("%d\n", func1());
+	printf("%d\n", func2());
+	printf("%d\n", func3());
+	printf("%d\n", func4());
+	printf("%d\n", func5());
+	printf("%d\n", func6());
+	printf("%d\n", func7());
+	printf("%d\n", func8());
+	printf("%d\n", func9());
+	printf("%d\n", func10());
+	printf("%d\n", func11());
+	printf("%d\n", func12());
+	printf("%d\n", func13());
+	printf("%d\n", func14());
+	printf("%d\n", func15());
+	printf("%d\n", func16());
+	printf("%d\n", func17());
+	printf("%d\n", func18());
+	printf("%d\n", func19());
+	printf("%d\n", func20());
+	printf("%d\n", func21());
+	printf("%d\n", func22());
+	printf("%d\n", func23());
+	return 0;
+}

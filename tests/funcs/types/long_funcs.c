@@ -1,26 +1,102 @@
-long func360();
-static long func361();
-extern long func362();
-const long func363();
-static const long func364();
-extern const long func365();
-volatile long func366();
-static volatile long func367();
-extern volatile long func368();
-const volatile long func369();
-static const volatile long func370();
-extern const volatile long func371();
-inline long func372();
-static inline long func373();
-extern inline long func374();
-const inline long func375();
-static const inline long func376();
-extern const inline long func377();
-volatile inline long func378();
-static volatile inline long func379();
-extern volatile inline long func380();
-const volatile inline long func381();
-static const volatile inline long func382();
-extern const volatile inline long func383();
+#include "stdio.h"
 
-void main() {}
+long func0() {
+	return 0;
+}
+static long func1() {
+	return 0;
+}
+extern long func2() {
+	return 0;
+}
+const long func3() {
+	return 0;
+}
+static const long func4() {
+	return 0;
+}
+extern const long func5() {
+	return 0;
+}
+volatile long func6() {
+	return 0;
+}
+static volatile long func7() {
+	return 0;
+}
+extern volatile long func8() {
+	return 0;
+}
+const volatile long func9() {
+	return 0;
+}
+static const volatile long func10() {
+	return 0;
+}
+extern const volatile long func11() {
+	return 0;
+}
+inline __attribute__((always_inline)) long func12() {
+	return 0;
+}
+static inline __attribute__((always_inline)) long func13() {
+	return 0;
+}
+extern inline __attribute__((always_inline)) long func14() {
+	return 0;
+}
+const inline __attribute__((always_inline)) long func15() {
+	return 0;
+}
+static const inline __attribute__((always_inline)) long func16() {
+	return 0;
+}
+extern const inline __attribute__((always_inline)) long func17() {
+	return 0;
+}
+volatile inline __attribute__((always_inline)) long func18() {
+	return 0;
+}
+static volatile inline __attribute__((always_inline)) long func19() {
+	return 0;
+}
+extern volatile inline __attribute__((always_inline)) long func20() {
+	return 0;
+}
+const volatile inline __attribute__((always_inline)) long func21() {
+	return 0;
+}
+static const volatile inline __attribute__((always_inline)) long func22() {
+	return 0;
+}
+extern const volatile inline __attribute__((always_inline)) long func23() {
+	return 0;
+}
+
+int main() {
+	printf("%d\n", func0());
+	printf("%d\n", func1());
+	printf("%d\n", func2());
+	printf("%d\n", func3());
+	printf("%d\n", func4());
+	printf("%d\n", func5());
+	printf("%d\n", func6());
+	printf("%d\n", func7());
+	printf("%d\n", func8());
+	printf("%d\n", func9());
+	printf("%d\n", func10());
+	printf("%d\n", func11());
+	printf("%d\n", func12());
+	printf("%d\n", func13());
+	printf("%d\n", func14());
+	printf("%d\n", func15());
+	printf("%d\n", func16());
+	printf("%d\n", func17());
+	printf("%d\n", func18());
+	printf("%d\n", func19());
+	printf("%d\n", func20());
+	printf("%d\n", func21());
+	printf("%d\n", func22());
+	printf("%d\n", func23());
+	return 0;
+}
