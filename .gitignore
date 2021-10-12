@@ -29,8 +29,9 @@
 *.app
 
 # User-specific stuff:
-**/.idea
-**/cmake-build-debug
+**/.idea/**
+**/cmake-build-debug/**
+**/build/**
 *.cmake
 Makefile
 Makefile2

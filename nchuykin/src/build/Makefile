@@ -169,6 +169,60 @@ analyzers.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/c2eo.dir/build.make CMakeFiles/c2eo.dir/analyzers.cpp.s
 .PHONY : analyzers.cpp.s
 
+funcdecl.o: funcdecl.cpp.o
+
+.PHONY : funcdecl.o
+
+# target to build an object file
+funcdecl.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/c2eo.dir/build.make CMakeFiles/c2eo.dir/funcdecl.cpp.o
+.PHONY : funcdecl.cpp.o
+
+funcdecl.i: funcdecl.cpp.i
+
+.PHONY : funcdecl.i
+
+# target to preprocess a source file
+funcdecl.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/c2eo.dir/build.make CMakeFiles/c2eo.dir/funcdecl.cpp.i
+.PHONY : funcdecl.cpp.i
+
+funcdecl.s: funcdecl.cpp.s
+
+.PHONY : funcdecl.s
+
+# target to generate assembly for a file
+funcdecl.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/c2eo.dir/build.make CMakeFiles/c2eo.dir/funcdecl.cpp.s
+.PHONY : funcdecl.cpp.s
+
+generator.o: generator.cpp.o
+
+.PHONY : generator.o
+
+# target to build an object file
+generator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/c2eo.dir/build.make CMakeFiles/c2eo.dir/generator.cpp.o
+.PHONY : generator.cpp.o
+
+generator.i: generator.cpp.i
+
+.PHONY : generator.i
+
+# target to preprocess a source file
+generator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/c2eo.dir/build.make CMakeFiles/c2eo.dir/generator.cpp.i
+.PHONY : generator.cpp.i
+
+generator.s: generator.cpp.s
+
+.PHONY : generator.s
+
+# target to generate assembly for a file
+generator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/c2eo.dir/build.make CMakeFiles/c2eo.dir/generator.cpp.s
+.PHONY : generator.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -223,6 +277,60 @@ matchers.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/c2eo.dir/build.make CMakeFiles/c2eo.dir/matchers.cpp.s
 .PHONY : matchers.cpp.s
 
+stmt.o: stmt.cpp.o
+
+.PHONY : stmt.o
+
+# target to build an object file
+stmt.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/c2eo.dir/build.make CMakeFiles/c2eo.dir/stmt.cpp.o
+.PHONY : stmt.cpp.o
+
+stmt.i: stmt.cpp.i
+
+.PHONY : stmt.i
+
+# target to preprocess a source file
+stmt.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/c2eo.dir/build.make CMakeFiles/c2eo.dir/stmt.cpp.i
+.PHONY : stmt.cpp.i
+
+stmt.s: stmt.cpp.s
+
+.PHONY : stmt.s
+
+# target to generate assembly for a file
+stmt.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/c2eo.dir/build.make CMakeFiles/c2eo.dir/stmt.cpp.s
+.PHONY : stmt.cpp.s
+
+util.o: util.cpp.o
+
+.PHONY : util.o
+
+# target to build an object file
+util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/c2eo.dir/build.make CMakeFiles/c2eo.dir/util.cpp.o
+.PHONY : util.cpp.o
+
+util.i: util.cpp.i
+
+.PHONY : util.i
+
+# target to preprocess a source file
+util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/c2eo.dir/build.make CMakeFiles/c2eo.dir/util.cpp.i
+.PHONY : util.cpp.i
+
+util.s: util.cpp.s
+
+.PHONY : util.s
+
+# target to generate assembly for a file
+util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/c2eo.dir/build.make CMakeFiles/c2eo.dir/util.cpp.s
+.PHONY : util.cpp.s
+
 vardecl.o: vardecl.cpp.o
 
 .PHONY : vardecl.o
@@ -262,12 +370,24 @@ help:
 	@echo "... analyzers.o"
 	@echo "... analyzers.i"
 	@echo "... analyzers.s"
+	@echo "... funcdecl.o"
+	@echo "... funcdecl.i"
+	@echo "... funcdecl.s"
+	@echo "... generator.o"
+	@echo "... generator.i"
+	@echo "... generator.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
 	@echo "... matchers.o"
 	@echo "... matchers.i"
 	@echo "... matchers.s"
+	@echo "... stmt.o"
+	@echo "... stmt.i"
+	@echo "... stmt.s"
+	@echo "... util.o"
+	@echo "... util.i"
+	@echo "... util.s"
 	@echo "... vardecl.o"
 	@echo "... vardecl.i"
 	@echo "... vardecl.s"

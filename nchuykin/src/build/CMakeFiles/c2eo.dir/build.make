@@ -102,9 +102,35 @@ CMakeFiles/c2eo.dir/vardecl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/c2eo.dir/vardecl.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nchuykin/repository/C2EO-draft/nchuykin/src/vardecl.cpp -o CMakeFiles/c2eo.dir/vardecl.cpp.s
 
+CMakeFiles/c2eo.dir/funcdecl.cpp.o: CMakeFiles/c2eo.dir/flags.make
+CMakeFiles/c2eo.dir/funcdecl.cpp.o: ../funcdecl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nchuykin/repository/C2EO-draft/nchuykin/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/c2eo.dir/funcdecl.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/c2eo.dir/funcdecl.cpp.o -c /home/nchuykin/repository/C2EO-draft/nchuykin/src/funcdecl.cpp
+
+CMakeFiles/c2eo.dir/funcdecl.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/c2eo.dir/funcdecl.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nchuykin/repository/C2EO-draft/nchuykin/src/funcdecl.cpp > CMakeFiles/c2eo.dir/funcdecl.cpp.i
+
+CMakeFiles/c2eo.dir/funcdecl.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/c2eo.dir/funcdecl.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nchuykin/repository/C2EO-draft/nchuykin/src/funcdecl.cpp -o CMakeFiles/c2eo.dir/funcdecl.cpp.s
+
+CMakeFiles/c2eo.dir/stmt.cpp.o: CMakeFiles/c2eo.dir/flags.make
+CMakeFiles/c2eo.dir/stmt.cpp.o: ../stmt.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nchuykin/repository/C2EO-draft/nchuykin/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/c2eo.dir/stmt.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/c2eo.dir/stmt.cpp.o -c /home/nchuykin/repository/C2EO-draft/nchuykin/src/stmt.cpp
+
+CMakeFiles/c2eo.dir/stmt.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/c2eo.dir/stmt.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nchuykin/repository/C2EO-draft/nchuykin/src/stmt.cpp > CMakeFiles/c2eo.dir/stmt.cpp.i
+
+CMakeFiles/c2eo.dir/stmt.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/c2eo.dir/stmt.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nchuykin/repository/C2EO-draft/nchuykin/src/stmt.cpp -o CMakeFiles/c2eo.dir/stmt.cpp.s
+
 CMakeFiles/c2eo.dir/analyzers.cpp.o: CMakeFiles/c2eo.dir/flags.make
 CMakeFiles/c2eo.dir/analyzers.cpp.o: ../analyzers.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nchuykin/repository/C2EO-draft/nchuykin/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/c2eo.dir/analyzers.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nchuykin/repository/C2EO-draft/nchuykin/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/c2eo.dir/analyzers.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/c2eo.dir/analyzers.cpp.o -c /home/nchuykin/repository/C2EO-draft/nchuykin/src/analyzers.cpp
 
 CMakeFiles/c2eo.dir/analyzers.cpp.i: cmake_force
@@ -117,7 +143,7 @@ CMakeFiles/c2eo.dir/analyzers.cpp.s: cmake_force
 
 CMakeFiles/c2eo.dir/matchers.cpp.o: CMakeFiles/c2eo.dir/flags.make
 CMakeFiles/c2eo.dir/matchers.cpp.o: ../matchers.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nchuykin/repository/C2EO-draft/nchuykin/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/c2eo.dir/matchers.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nchuykin/repository/C2EO-draft/nchuykin/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/c2eo.dir/matchers.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/c2eo.dir/matchers.cpp.o -c /home/nchuykin/repository/C2EO-draft/nchuykin/src/matchers.cpp
 
 CMakeFiles/c2eo.dir/matchers.cpp.i: cmake_force
@@ -128,23 +154,57 @@ CMakeFiles/c2eo.dir/matchers.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/c2eo.dir/matchers.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nchuykin/repository/C2EO-draft/nchuykin/src/matchers.cpp -o CMakeFiles/c2eo.dir/matchers.cpp.s
 
+CMakeFiles/c2eo.dir/generator.cpp.o: CMakeFiles/c2eo.dir/flags.make
+CMakeFiles/c2eo.dir/generator.cpp.o: ../generator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nchuykin/repository/C2EO-draft/nchuykin/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/c2eo.dir/generator.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/c2eo.dir/generator.cpp.o -c /home/nchuykin/repository/C2EO-draft/nchuykin/src/generator.cpp
+
+CMakeFiles/c2eo.dir/generator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/c2eo.dir/generator.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nchuykin/repository/C2EO-draft/nchuykin/src/generator.cpp > CMakeFiles/c2eo.dir/generator.cpp.i
+
+CMakeFiles/c2eo.dir/generator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/c2eo.dir/generator.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nchuykin/repository/C2EO-draft/nchuykin/src/generator.cpp -o CMakeFiles/c2eo.dir/generator.cpp.s
+
+CMakeFiles/c2eo.dir/util.cpp.o: CMakeFiles/c2eo.dir/flags.make
+CMakeFiles/c2eo.dir/util.cpp.o: ../util.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nchuykin/repository/C2EO-draft/nchuykin/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/c2eo.dir/util.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/c2eo.dir/util.cpp.o -c /home/nchuykin/repository/C2EO-draft/nchuykin/src/util.cpp
+
+CMakeFiles/c2eo.dir/util.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/c2eo.dir/util.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nchuykin/repository/C2EO-draft/nchuykin/src/util.cpp > CMakeFiles/c2eo.dir/util.cpp.i
+
+CMakeFiles/c2eo.dir/util.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/c2eo.dir/util.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nchuykin/repository/C2EO-draft/nchuykin/src/util.cpp -o CMakeFiles/c2eo.dir/util.cpp.s
+
 # Object files for target c2eo
 c2eo_OBJECTS = \
 "CMakeFiles/c2eo.dir/main.cpp.o" \
 "CMakeFiles/c2eo.dir/vardecl.cpp.o" \
+"CMakeFiles/c2eo.dir/funcdecl.cpp.o" \
+"CMakeFiles/c2eo.dir/stmt.cpp.o" \
 "CMakeFiles/c2eo.dir/analyzers.cpp.o" \
-"CMakeFiles/c2eo.dir/matchers.cpp.o"
+"CMakeFiles/c2eo.dir/matchers.cpp.o" \
+"CMakeFiles/c2eo.dir/generator.cpp.o" \
+"CMakeFiles/c2eo.dir/util.cpp.o"
 
 # External object files for target c2eo
 c2eo_EXTERNAL_OBJECTS =
 
 c2eo: CMakeFiles/c2eo.dir/main.cpp.o
 c2eo: CMakeFiles/c2eo.dir/vardecl.cpp.o
+c2eo: CMakeFiles/c2eo.dir/funcdecl.cpp.o
+c2eo: CMakeFiles/c2eo.dir/stmt.cpp.o
 c2eo: CMakeFiles/c2eo.dir/analyzers.cpp.o
 c2eo: CMakeFiles/c2eo.dir/matchers.cpp.o
+c2eo: CMakeFiles/c2eo.dir/generator.cpp.o
+c2eo: CMakeFiles/c2eo.dir/util.cpp.o
 c2eo: CMakeFiles/c2eo.dir/build.make
 c2eo: CMakeFiles/c2eo.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/nchuykin/repository/C2EO-draft/nchuykin/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable c2eo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/nchuykin/repository/C2EO-draft/nchuykin/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable c2eo"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/c2eo.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
