@@ -1,6 +1,6 @@
-+package c2eo.eo
++package c2eo
 
-+alias cint c2eo.ctypes.c_int32
++alias c2eo.ctypes.c_int32
 
 
 [arg] > global
