@@ -1,6 +1,6 @@
-+package c2eo
++package c2eo.eo
 
-+alias global c2eo.global
++alias global c2eo.eo.global
 
 +alias org.eolang.io.stdout
 +alias org.eolang.txt.sprintf

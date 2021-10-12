@@ -1,4 +1,4 @@
-+package c2eo
++package c2eo.eo
 
 +alias cint c2eo.ctypes.c_int32
 
