@@ -79,6 +79,18 @@ int main(int argc, const char **argv) {
 
     generateSpace(globGen, "glob.global", "glob.seq");
     generateSpace(staticLocalGen,  "staticLocal.global", "staticLocal.seq");
+
+
+    //example.glob.seq
+    //example.glob - объявления глобальных
+    // global.eo
+
+
+    //example.stat.seq
+    //example.stat - объявления статических
+    // example.eo
+
+    // app.eo
     generateSpace(staticGlobalGen, "staticGlobal.global", "staticGlobal.seq");
 
     // Тестовое формирование глобального объекта с инициализацией
