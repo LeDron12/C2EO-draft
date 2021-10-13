@@ -33,7 +33,9 @@
 **/cmake-build-debug/**
 **/CMakeFiles/**
 **/build/**
+**/src/result/**
 *.cmake
+CMakeCache.txt
 Makefile
 Makefile2
 
