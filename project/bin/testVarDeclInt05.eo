@@ -1,0 +1,13 @@
++package c2eo
+
++alias c2eo.ctypes.c_bool
++alias c2eo.ctypes.c_char
++alias c2eo.ctypes.c_float64
++alias c2eo.ctypes.c_int16
++alias c2eo.ctypes.c_int32
++alias c2eo.ctypes.c_int64
+
+[arg] > testVarDeclInt05
+
+  c_int32 0 > ss_intVar00
+  c_int32 5 > ss_intVar02

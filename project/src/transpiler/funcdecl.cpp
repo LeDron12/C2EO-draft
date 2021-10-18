@@ -12,6 +12,14 @@ void getFuncDeclParameters(const FunctionDecl *FD) {
     llvm::outs() << "Name of Function: " << funcName << "\n";
     llvm::outs() << "  Func Kind Name: " << FD->clang::Decl::getDeclKindName() << "\n";
 
+    // Определяем определение это или только объявление функции
+    auto isDefinition = FD->isThisDeclarationADefinition();
+    if(isDefinition){
+        llvm::outs() << "  It's definition\n";
+    } else {
+        llvm::outs() << "  It's declaration only\n";
+    }
+
     // Нужны только функции, имеющие тело
     auto hasBody = FD->hasBody();
     if(hasBody) {

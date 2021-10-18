@@ -1,3 +1,4 @@
+//#define  VAR_DECL_INFO
 // Функции, используемые при анализе переменных
 
 #include "vardecl.h"
@@ -7,14 +8,16 @@
 void getVarDeclParameters(const VarDecl *VD) {
     // Имя переменной
     auto varName = VD->getNameAsString();
+#ifdef VAR_DECL_INFO
     llvm::outs() << "Name of Variable: " << varName << "\n";
     llvm::outs() << "  Var Kind Name: " << VD->getDeclKindName() << "\n";
-
+#endif
     TypeInfo typeInfo = VD->getASTContext().getTypeInfo(VD->getType());
     auto typeSize = typeInfo.Width;
     auto fieldAlign = typeInfo.Align;
+#ifdef VAR_DECL_INFO
     llvm::outs() << "  Size = " << typeInfo.Width << ", Align = " << typeInfo.Align << "\n";
-
+#endif
     // Получение типа переменной
     ///std::string typeName{"any value"};
     ///StringRef varTypeName(typeName);
@@ -23,13 +26,15 @@ void getVarDeclParameters(const VarDecl *VD) {
     const IdentifierInfo *typeId = qualType.getBaseTypeIdentifier();
     ////varTypeName = typeId->getName();
     ////llvm::outs() << "  Type is " << varTypeName << "\n";
+#ifdef VAR_DECL_INFO
     if (typeId != nullptr) {
         llvm::outs() << "  Type is " << typeId->getName() << "\n";
     } else {
         llvm::outs() << "  The problem to identify type name\n";
     }
-
+#endif
     auto typePtr = qualType.getTypePtr();
+#ifdef VAR_DECL_INFO
     if (typePtr->isBuiltinType()) {
         llvm::outs() << "  It is Builtin type\n";
 //         BuiltinType* btPtr = dynamic_cast<BuiltinType*>(typePtr);
@@ -41,38 +46,49 @@ void getVarDeclParameters(const VarDecl *VD) {
     } else {
         llvm::outs() << "  It is not Builtin type\n";
     }
+#endif
     //auto kind = typePtr->getKind();
 
     std::string strType = "";
 
     if (typePtr->isCharType()) {
+#ifdef VAR_DECL_INFO
         if (typePtr->isSignedIntegerType()) {
             llvm::outs() << "    -->signedCharType\n";
         } else {
             llvm::outs() << "    -->unsignedCharType\n";
         }
+#endif
         strType = "c_char";
     } else if (typePtr->isBooleanType()) {
+#ifdef VAR_DECL_INFO
         llvm::outs() << "    -->isBooleanType\n";
+#endif
         strType = "c_bool";
     } else if (typePtr->isRealFloatingType()) {
+#ifdef VAR_DECL_INFO
         llvm::outs() << "    -->isRealFloatingType\n";
+#endif
         strType = "c_float";
     } else if (typePtr->isIntegerType()) {
+#ifdef VAR_DECL_INFO
         if (typePtr->isSignedIntegerType())
             llvm::outs() << "    -->signedIntegerType\n";
         else
             llvm::outs() << "    -->unsignedIntegerType\n";
+#endif
         //TODO доработать этот код для разных размеров
         strType = "c_int32";
     }
-
+#ifdef VAR_DECL_INFO
     llvm::outs() << "  !!! class name = " << typePtr->getTypeClassName() << "\n";
-
+#endif
     // StorageClass getStorageClass() const
     // Показывает на явное описани того или иного класса памяти в тексте программы
     // Наверное не во всех случаях полезно
     auto storageClass = VD->getStorageClass();
+#ifdef VAR_DECL_INFO
+
     llvm::outs() << "  storage class is ";
     switch (storageClass) {
         case SC_None:
@@ -97,53 +113,67 @@ void getVarDeclParameters(const VarDecl *VD) {
             llvm::outs() << "NOT DEFINED";
     }
     llvm::outs() << "\n";
-
+#endif
     // Проверка на размещение переменной в локальной памяти
     auto inLocalStorage = VD->hasLocalStorage();
+#ifdef VAR_DECL_INFO
+
     if (inLocalStorage) {
         llvm::outs() << "  Local Storage\n";
     } else {
         llvm::outs() << "  not Local Storage\n";
     }
+#endif
     // Проверка на статическую локальную переменную
     auto staticLocal = VD->isStaticLocal();
+#ifdef VAR_DECL_INFO
     if (staticLocal) {
         llvm::outs() << "  Static Local\n";
     } else {
         llvm::outs() << "  not Static Local\n";
     }
+#endif
     // Внешняя переменная (описатель external)
     auto extStorage = VD->hasExternalStorage();
+#ifdef VAR_DECL_INFO
     if (extStorage) {
         llvm::outs() << "  External Storage Defenition\n";
     } else {
         llvm::outs() << "  not External Storage Definition\n";
     }
+#endif
     // Размещение переменной в глобальной памяти
     // Касается глобальных и статических переменных
     auto globalStorage = VD->hasGlobalStorage();
+#ifdef VAR_DECL_INFO
     if (globalStorage) {
         llvm::outs() << "  has GlobalStorage\n";
     } else {
         llvm::outs() << "  has not GlobalStorage\n";
     }
+#endif
     // Переменная с локальной видимостью
     auto localVarDecl = VD->isLocalVarDecl();
+#ifdef VAR_DECL_INFO
     if (localVarDecl) {
         llvm::outs() << "  is Local VarDecl\n";
     } else {
         llvm::outs() << "  is not Local VarDecl\n";
     }
+#endif
     // Переменная или параметр с локальной видимостью
     auto localVarDeclOrParm = VD->isLocalVarDeclOrParm();
+#ifdef VAR_DECL_INFO
     if (localVarDeclOrParm) {
         llvm::outs() << "  is Local VarDecl or Parm\n";
     } else {
         llvm::outs() << "  is not Local VarDecl or Parm\n";
     }
+#endif
     // Наличие начальной инициализации
     auto isInit = VD->hasInit();
     std::string strValue = "";
+#ifdef VAR_DECL_INFO
     if (isInit) {
         llvm::outs() << "  has Initializer\n";
         initValueAnalysis(VD, strValue);
@@ -151,7 +181,7 @@ void getVarDeclParameters(const VarDecl *VD) {
         llvm::outs() << "  has not Initializer\n";
         initZeroValueAnalysis(VD, strValue);
     }
-
+#endif
 
 
 
