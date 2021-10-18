@@ -9,6 +9,6 @@
 
 [arg] > global
 
-  c_int32  > g_a
-  c_int32  > g_b
-  c_int32  > g_c
+  c_int32 3 > g_a
+  c_int32 4 > g_b
+  c_int32 0 > g_c
