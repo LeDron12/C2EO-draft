@@ -27,7 +27,7 @@
 *.exe
 *.out
 *.app
-/bin/c2eo
+project/bin/c2eo
 
 # User-specific stuff:
 **/.idea/**
@@ -36,9 +36,9 @@
 **/build/**
 **/src/result/**
 *.cmake
-/bin/*.eo
-/bin/*.glob
-/bin/*.stat
+project/bin/*.eo
+project/bin/*.glob
+project/bin/*.stat
 CMakeCache.txt
 Makefile
 Makefile2
