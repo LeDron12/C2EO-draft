@@ -26,6 +26,9 @@ void getCompoundStmtParameters(const CompoundStmt* CS, int shift) {
             {
                 const ImplicitCastExpr* exp = (ImplicitCastExpr*)(*i);
                 llvm::outs()  << "             stmt class   " <<exp->child_begin()->getStmtClassName() << "\n";
+                const DeclRefExpr* var = (DeclRefExpr*)(*(exp->child_begin()));
+                llvm::outs()  << "                var ref ID   " <<var->getDecl()->getID() << "\n";
+
             }
         }
 

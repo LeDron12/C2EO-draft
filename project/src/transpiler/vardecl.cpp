@@ -1,4 +1,4 @@
-//#define  VAR_DECL_INFO
+#define  VAR_DECL_INFO
 // Функции, используемые при анализе переменных
 
 #include "vardecl.h"
@@ -8,9 +8,11 @@
 void getVarDeclParameters(const VarDecl *VD) {
     // Имя переменной
     auto varName = VD->getNameAsString();
+    auto varID = VD->getID();
 #ifdef VAR_DECL_INFO
     llvm::outs() << "Name of Variable: " << varName << "\n";
     llvm::outs() << "  Var Kind Name: " << VD->getDeclKindName() << "\n";
+    llvm::outs() << "  Var ID: " << varID<< "\n";
 #endif
     TypeInfo typeInfo = VD->getASTContext().getTypeInfo(VD->getType());
     auto typeSize = typeInfo.Width;
