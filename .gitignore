@@ -35,6 +35,9 @@
 **/build/**
 **/src/result/**
 *.cmake
+**/bin/*.eo
+**/bin/*.glob
+**/bin/*.stat
 CMakeCache.txt
 Makefile
 Makefile2
