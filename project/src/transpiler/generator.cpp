@@ -56,7 +56,7 @@ void SpaceGen::Generate(std::string &str) {
     str = "";
     // Формирование списка глобальных объектов
     std::string strObj = "";
-    for(auto globalObject: globalObjects) {
+    for(auto globalObject: objects) {
         globalObject->Generate(strObj);
         str += "  ";
         str += strObj;
@@ -66,7 +66,7 @@ void SpaceGen::Generate(std::string &str) {
 
 void SpaceGen::GenValue(std::string &str) {
     // Формирование списка инициализаций
-    for(auto globalObject: globalObjects) {
+    for(auto globalObject: objects) {
         std::string strInit = "";
         globalObject->GenValue(strInit);
         str += "    ";
@@ -79,11 +79,11 @@ void SpaceGen::GenValue(std::string &str) {
 //........................................................................
 // Добавление очередного объекта к глобальному пространству
 void SpaceGen::Add(AbstractGen* obj) {
-    globalObjects.push_back(obj);
+    objects.push_back(obj);
 }
 
 SpaceGen::~SpaceGen() {
-    globalObjects.clear();
+    objects.clear();
 }
 
 //--------------------------------------------------------------------------------------------------
