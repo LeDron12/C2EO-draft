@@ -41,8 +41,8 @@ void GlobalFuncGen::Generate(std::string &str) {
         str += "\n";
     }
     // Далее идет формирование тела функции, которое пока не прописано
-    str += "    seq > @\n";
-    str += "      ...\n";
+    str += "  stdout \"Hello, world!\" > @\n";
+    str += "main arg > @\n"; // Добавление инициализации main в глобальный объект
 }
 
 void GlobalFuncGen::GenValue(std::string &str) {
