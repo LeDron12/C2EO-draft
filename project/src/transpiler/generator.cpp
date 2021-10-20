@@ -58,7 +58,7 @@ void SpaceGen::Generate(std::string &str) {
     std::string strObj = "";
     for(auto globalObject: objects) {
         globalObject->Generate(strObj);
-        str += "  ";
+        //str += "  ";
         str += strObj;
         str += "\n";
     }

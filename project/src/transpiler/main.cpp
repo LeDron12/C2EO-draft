@@ -82,10 +82,10 @@ int main(int argc, const char **argv) {
 //     generateSpace(globGen, filename + ".glob", filename + ".glob.seq");
 //     generateSpace(staticGen, filename + ".stat", filename + ".stat.seq");
     if (!globGen.objects.empty()) {
-        generateSpace(globGen, filename + ".glob");
+        generateSpace(globGen, "../assembly/" + filename + ".glob");
     }
     if (!staticGen.objects.empty()) {
-        generateSpace(staticGen, filename + ".stat");
+        generateSpace(staticGen, "../assembly/" + filename + ".stat");
     }
 
 
