@@ -46,7 +46,7 @@ void GlobalFuncGen::Generate(std::string &str) {
     // Далее идет формирование тела функции
     body->Generate(str);
     if(name == "main") {
-        str += "main > @\n";
+        str += "main arg > @\n";
     }
 }
 
