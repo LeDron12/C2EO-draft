@@ -1,4 +1,4 @@
-int main(int argc, char **argv);
+//clang -Xclang -ast-dump -fsyntax-only main.cpp
 
 int a = 3;
 int b = 4;

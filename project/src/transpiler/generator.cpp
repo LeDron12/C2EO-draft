@@ -10,6 +10,9 @@
 
 SpaceGen* AbstractGen::globalSpaceGenPtr = nullptr;
 SpaceGen* AbstractGen::staticSpaceGenPtr = nullptr;
+std::string AbstractGen::filename = "";
+std::map<int64_t ,std::string> AbstractGen::identifiers = std::map<int64_t,std::string>();
+
 
 //--------------------------------------------------------------------------------------------------
 void VarGen::Generate(std::string &str) {
@@ -40,9 +43,9 @@ void GlobalFuncGen::Generate(std::string &str) {
         str += name;
         str += "\n";
     }
-    // Далее идет формирование тела функции, которое пока не прописано
-    str += "  stdout \"Hello, world!\" > @\n";
-    str += "main arg > @\n"; // Добавление инициализации main в глобальный объект
+    // Далее идет формирование тела функции
+    body->Generate(str);
+
 }
 
 void GlobalFuncGen::GenValue(std::string &str) {
@@ -55,10 +58,10 @@ void GlobalFuncGen::GenValue(std::string &str) {
 void SpaceGen::Generate(std::string &str) {
     str = "";
     // Формирование списка глобальных объектов
-    std::string strObj = "";
+    //
     for(auto globalObject: objects) {
+        std::string strObj = "";
         globalObject->Generate(strObj);
-        //str += "  ";
         str += strObj;
         str += "\n";
     }
@@ -88,25 +91,7 @@ SpaceGen::~SpaceGen() {
 
 //--------------------------------------------------------------------------------------------------
 void ApplicationGen::Generate(std::string &str) {
-    str = R""""(+package c2eo
-
-+alias c2eo.global
-+alias c2eo.testVarDeclInt05
-
-+alias org.eolang.io.stdout
-+alias org.eolang.txt.sprintf
-
-[args...] > app
-  seq > @
-    global args > g!
-    testVarDeclInt05 args > m!
-    stdout
-      sprintf
-        "%s %s %s\n"
-        g.g_intVar01.toString
-        m.gs_intVar00.toString
-        m.ls_intVar02.toString
-)"""";
+    str = R""""()"""";
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -115,4 +100,53 @@ void FullGen::Generate(std::string &str) {
 }
 
 
+void CompoundStmtGen::Generate(std::string &str) {
+    str += getIndentSpaces(shift);
+    str += value;
+    str += "\n";
+    for (auto stmt : statements)
+    {
+        std::string strobj = "";
+        strobj += getIndentSpaces(stmt->shift);
+        stmt->Generate(strobj);
+        str += strobj + "\n";
+    }
+}
 
+CompoundStmtGen::~CompoundStmtGen() {
+    CompoundStmtGen::statements.clear();
+}
+
+void CompoundStmtGen::Add(StmtGen* stmtGen) {
+    CompoundStmtGen::statements.push_back(stmtGen);
+}
+
+std::string CompoundStmtGen::getIndentSpaces(int shift) {
+    std::string res = "";
+    for (int i = 0; i < shift; ++i) {
+        res += "  ";
+    }
+    return res;
+}
+
+void BinaryStmtGen::Generate(std::string &str) {
+    left->Generate(str);
+    str += value +"(";
+    right->Generate(str);
+    str += ")";
+}
+
+BinaryStmtGen::~BinaryStmtGen() {
+    delete BinaryStmtGen::left;
+    delete BinaryStmtGen::right;
+}
+
+UnaryStmtGen::~UnaryStmtGen() {
+    delete UnaryStmtGen::nestedStmt;
+}
+
+void UnaryStmtGen::Generate(std::string &str) {
+    str += value;
+    if (nestedStmt != nullptr)
+        nestedStmt->Generate(str);
+}

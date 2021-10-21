@@ -130,9 +130,11 @@ void getFuncDeclParameters(const FunctionDecl *FD) {
             getCompoundStmtParameters(static_cast<CompoundStmt*>(body));
         }
     }
-    //TODO расскомментировать эти строки и добавить статику
+    //TODO добавить статику
     // Формируется глобальная функция со всеми атрибутами
+
 /*
+>>>>>>> eb1ab71056fae932517610dcc1e3a97dc67ebf10
     if(isGlobal) {
         GlobalFuncGen* func = new GlobalFuncGen;
         if(funcName == "main") {
@@ -144,9 +146,16 @@ void getFuncDeclParameters(const FunctionDecl *FD) {
         for(auto paramName: paramNames) {
             func->paramNames.push_back(paramName);
         }
+        Stmt::StmtClass stmtClass = body->getStmtClass();
+        if(stmtClass == Stmt::CompoundStmtClass) { // Нужно разобраться с именами перчислимых типов
+            func-> body = getCompoundStmtGenerator(static_cast<CompoundStmt*>(body),1,true);
+        }
+
         func->globalSpaceGenPtr->Add(func);
     }
+
 */
+
     //FD->dump();
 }
 
