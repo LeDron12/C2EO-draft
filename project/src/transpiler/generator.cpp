@@ -45,7 +45,9 @@ void GlobalFuncGen::Generate(std::string &str) {
     }
     // Далее идет формирование тела функции
     body->Generate(str);
-
+    if(name == "main") {
+        str += "main arg > @\n";
+    }
 }
 
 void GlobalFuncGen::GenValue(std::string &str) {
@@ -65,6 +67,7 @@ void SpaceGen::Generate(std::string &str) {
         str += strObj;
         str += "\n";
     }
+
 }
 
 void SpaceGen::GenValue(std::string &str) {
