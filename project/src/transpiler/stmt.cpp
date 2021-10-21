@@ -2,11 +2,14 @@
 
 BinaryStmtGen *getBinaryStatement(const BinaryOperator *pOperator, int shift);
 
-UnaryStmtGen *getCastGen(const ImplicitCastExpr *pExpr, int i);
+UnaryStmtGen *getCastGen(const ImplicitCastExpr *pExpr, int shift);
+UnaryStmtGen *getEmptyUnaryGen(const ImplicitCastExpr *pExpr, int shift);
 
 UnaryStmtGen *getDeclName(const DeclRefExpr *pExpr);
 
 StmtGen *getStmtGen(ConstStmtIterator i, int shift);
+
+CompoundStmtGen *getCompoundStmtOutputGenerator(ImplicitCastExpr *pExpr, int shift);
 
 //-------------------------------------------------------------------------------------------------
 // Определение и тестовый вывод основных параметров составного оператора
@@ -22,7 +25,7 @@ void getCompoundStmtParameters(const CompoundStmt* CS, int shift) {
     unsigned bodySize = CS->size();
     llvm::outs() << "  Body size = " << bodySize << " \n";
 
-    getCompoundStmtGenerator(CS, 0);
+    //getCompoundStmtGenerator(CS, 0);
 
     for(CompoundStmt::const_body_iterator i = CS->body_begin(); i != CS->body_end(); i++) {
         char* stmtName = (char*)((*i)->getStmtClassName());
@@ -53,10 +56,39 @@ CompoundStmtGen* getCompoundStmtGenerator(const CompoundStmt *CS,  int shift, bo
         compoundStmt->value += " > @";
     compoundStmt->shift = shift;
     for(CompoundStmt::const_body_iterator i = CS->body_begin(); i != CS->body_end(); i++) {
+        // Костыльное решение для тестового выводо
+        char* stmtName = (char*)((*i)->getStmtClassName());
+        if (strcmp(stmtName , "ImplicitCastExpr") == 0)
+        {
+            CompoundStmtGen *stmtGen = getCompoundStmtOutputGenerator((ImplicitCastExpr*)(*i),shift + 1);
+            compoundStmt->Add(stmtGen);
+            continue;
+        }
         StmtGen *stmtGen = getStmtGen(i, shift + 1);
         if (stmtGen != nullptr)
             compoundStmt->Add(stmtGen);
     }
+    return compoundStmt;
+}
+
+CompoundStmtGen *getCompoundStmtOutputGenerator(ImplicitCastExpr *pExpr, int shift) {
+    CompoundStmtGen* compoundStmt = new CompoundStmtGen;
+    compoundStmt->value = "seq";
+    compoundStmt->shift = shift;
+    // Вывод переменной
+    UnaryStmtGen* unaryStmtGen = new UnaryStmtGen;
+    unaryStmtGen-> shift = shift + 1;
+    unaryStmtGen->value = "stdout ";
+    unaryStmtGen->postfix = ".as-string";
+    DeclRefExpr *declExpr = (DeclRefExpr *)(*(pExpr->child_begin()));
+    unaryStmtGen->nestedStmt = getDeclName(declExpr);
+    compoundStmt->Add(unaryStmtGen);
+    // Вывод перевода строки
+    unaryStmtGen = new UnaryStmtGen;
+    unaryStmtGen-> shift = shift + 1;
+    unaryStmtGen-> value = R"(stdout "\n")";
+    unaryStmtGen-> nestedStmt = nullptr;
+    compoundStmt->Add(unaryStmtGen);
     return compoundStmt;
 }
 
@@ -69,6 +101,13 @@ StmtGen *getStmtGen(ConstStmtIterator i, int shift) {
         BinaryStmtGen* binaryStmtGen = getBinaryStatement(op, shift);
         binaryStmtGen->shift  = shift;
         stmtGen = binaryStmtGen;
+    }
+    else if (strcmp(stmtName , "ParenExpr") == 0)
+    {
+        const ImplicitCastExpr* op = (ImplicitCastExpr*)(*i);
+        UnaryStmtGen* unaryStmtGen = getEmptyUnaryGen(op, shift);
+        unaryStmtGen->shift  = shift;
+        stmtGen = unaryStmtGen;
     }
     else if (strcmp(stmtName , "ImplicitCastExpr") == 0)
     {
@@ -84,6 +123,12 @@ StmtGen *getStmtGen(ConstStmtIterator i, int shift) {
         unaryStmtGen->shift  = shift;
         stmtGen = unaryStmtGen;
     }
+    else if(strcmp(stmtName , "CompoundStmt") == 0)
+    {
+        const CompoundStmt* cs = (CompoundStmt*)(*i);
+        CompoundStmtGen* compoundStmtGen = getCompoundStmtGenerator(cs,shift);
+        stmtGen = compoundStmtGen;
+    }
     return stmtGen;
 }
 
@@ -96,6 +141,10 @@ UnaryStmtGen *getDeclName(const DeclRefExpr *pExpr) {
 }
 
 UnaryStmtGen *getCastGen(const ImplicitCastExpr *pExpr, int shift) {
+    return getEmptyUnaryGen(pExpr,shift);
+}
+
+UnaryStmtGen *getEmptyUnaryGen(const ImplicitCastExpr *pExpr, int shift) {
     UnaryStmtGen* unaryStmtGen = new UnaryStmtGen;
     unaryStmtGen->value = "";
     unaryStmtGen-> nestedStmt =  getStmtGen(pExpr->child_begin(), shift + 1);

@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <numeric>
+
 
 #include "generator.h"
 
@@ -44,7 +46,9 @@ void GlobalFuncGen::Generate(std::string &str) {
         str += "\n";
     }
     // Далее идет формирование тела функции
+    str += getIndentSpaces(body->shift);
     body->Generate(str);
+    str += "\n";
     if(name == "main") {
         str += "main arg > @\n";
     }
@@ -104,16 +108,27 @@ void FullGen::Generate(std::string &str) {
 
 
 void CompoundStmtGen::Generate(std::string &str) {
-    str += getIndentSpaces(shift);
     str += value;
     str += "\n";
+    std::vector<std::string> lines;
     for (auto stmt : statements)
     {
         std::string strobj = "";
         strobj += getIndentSpaces(stmt->shift);
         stmt->Generate(strobj);
-        str += strobj + "\n";
+        lines.push_back(strobj);
     }
+    std::string res = std::accumulate(
+            std::next(lines.begin()),
+            lines.end(),
+            lines[0],
+            [](std::string a, std::string b) {
+                return a + "\n" + b;
+            }
+    );
+    str += res;
+   //  lines[0];
+
 }
 
 CompoundStmtGen::~CompoundStmtGen() {
@@ -124,7 +139,7 @@ void CompoundStmtGen::Add(StmtGen* stmtGen) {
     CompoundStmtGen::statements.push_back(stmtGen);
 }
 
-std::string CompoundStmtGen::getIndentSpaces(int shift) {
+std::string StmtGen::getIndentSpaces(int shift) {
     std::string res = "";
     for (int i = 0; i < shift; ++i) {
         res += "  ";
@@ -149,7 +164,13 @@ UnaryStmtGen::~UnaryStmtGen() {
 }
 
 void UnaryStmtGen::Generate(std::string &str) {
+    bool empty = value.empty() && postfix.empty() || nestedStmt == nullptr;
     str += value;
+    if (!empty)
+        str += "(";
     if (nestedStmt != nullptr)
         nestedStmt->Generate(str);
+    str += postfix;
+    if (!empty)
+        str += ")";
 }

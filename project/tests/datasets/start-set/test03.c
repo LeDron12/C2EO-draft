@@ -6,7 +6,12 @@ int c;
  
 int main(int argc, char **argv) {
     c = a + b;
-    c = a;
+    {
+        c = (a);
+    }
     a = b;
     b = c;
+    a;
+    b;
+    c;
 }

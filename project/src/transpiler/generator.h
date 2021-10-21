@@ -56,7 +56,10 @@ struct VarGen: AbstractGen {
 // Накапливает необходимые значения в соответствующих строках.
 struct StmtGen: AbstractGen {
     std::string value;
+    std::string postfix = "";
     int shift;
+    std::string getIndentSpaces(int shift);
+
 };
 
 //-------------------------------------------------------------------------------------------------
@@ -69,15 +72,15 @@ struct CompoundStmtGen: StmtGen {
     virtual void Generate(std::string &str);
     ~CompoundStmtGen();
 
-    std::string getIndentSpaces(int shift);
+
 };
 
 //-------------------------------------------------------------------------------------------------
 // Генератор кода для бинарных операций.
 // Накапливает необходимые значения в соответствующих строках.
 struct BinaryStmtGen: StmtGen {
-    StmtGen* left;
-    StmtGen* right;
+    StmtGen* left = nullptr;
+    StmtGen* right = nullptr;
 
     virtual void Generate(std::string &str);
     ~BinaryStmtGen();
@@ -87,7 +90,7 @@ struct BinaryStmtGen: StmtGen {
 // Генератор кода для бинарных операций.
 // Накапливает необходимые значения в соответствующих строках.
 struct UnaryStmtGen: StmtGen {
-    StmtGen* nestedStmt;
+    StmtGen* nestedStmt = nullptr;
     std::string op;
 
     virtual void Generate(std::string &str);
@@ -96,7 +99,7 @@ struct UnaryStmtGen: StmtGen {
 //-------------------------------------------------------------------------------------------------
 // Генератор кода для глобальных функций.
 // Накапливает необходимые значения в соответствующих строках.
-struct GlobalFuncGen: AbstractGen {
+struct GlobalFuncGen: StmtGen {
     std::string name;       // имя объекта-функции
     std::vector<std::string> paramNames;    // список имен параметров (типы не нужны).
     CompoundStmtGen* body;

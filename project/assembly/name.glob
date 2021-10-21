@@ -4,8 +4,18 @@ c_int32 0 > g_c
 [arg] > main
   seq > @
     ^.g_c.write (^.g_a.add (^.g_b))
-    ^.g_c.write (^.g_a)
+    seq
+      ^.g_c.write (^.g_a)
     ^.g_a.write (^.g_b)
     ^.g_b.write (^.g_c)
-main > @
+    seq
+      stdout (^.g_a.as-string)
+      stdout "\n"
+    seq
+      stdout (^.g_b.as-string)
+      stdout "\n"
+    seq
+      stdout (^.g_c.as-string)
+      stdout "\n"
+main arg > @
 
