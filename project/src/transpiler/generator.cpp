@@ -164,7 +164,7 @@ UnaryStmtGen::~UnaryStmtGen() {
 }
 
 void UnaryStmtGen::Generate(std::string &str) {
-    bool empty = value.empty() && postfix.empty() || nestedStmt == nullptr;
+    bool empty = value.empty() || nestedStmt == nullptr;
     str += value;
     if (!empty)
         str += "(";

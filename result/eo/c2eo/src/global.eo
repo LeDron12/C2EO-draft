@@ -11,19 +11,50 @@
 
 [arg] > global
 
-  c_int32 0 > g_a
-  c_int32 10 > g_b
-  c_int32 30 > g_c
+  c_int32 4 > g_a
+  c_int32 3 > g_b
+  c_int32 0 > g_c
+  c_int32 0 > g_d
+  c_int32 0 > g_e
+  c_int32 0 > g_f
+  c_int32 0 > g_g
+  c_int32 0 > g_h
+  c_int32 0 > g_i
   [arg] > main
     seq > @
-      ^.g_a.write (^.g_b)
-      ^.g_b.write (^.g_c)
-      ^.g_c.write (^.g_a)
+      ^.g_c.write (^.g_a.add (^.g_b))
+      ^.g_d.write (^.g_a.sub (^.g_b))
+      ^.g_e.write (^.g_a.mul (^.g_b))
+      ^.g_f.write (^.g_a.div (^.g_b))
+      ^.g_g.write (^.g_a.mod (^.g_b))
+      ^.g_h.write (^.g_a.neg)
+      ^.g_i.write (^.g_a)
+      seq
+        stdout (^.g_a.as-string)
+        stdout "\n"
       seq
         stdout (^.g_b.as-string)
         stdout "\n"
       seq
         stdout (^.g_c.as-string)
         stdout "\n"
-      stdout (sprintf ("%s\n" ^.g_a.as-string))
+      seq
+        stdout (^.g_d.as-string)
+        stdout "\n"
+      seq
+        stdout (^.g_e.as-string)
+        stdout "\n"
+      seq
+        stdout (^.g_f.as-string)
+        stdout "\n"
+      seq
+        stdout (^.g_g.as-string)
+        stdout "\n"
+      seq
+        stdout (^.g_h.as-string)
+        stdout "\n"
+      seq
+        stdout (^.g_i.as-string)
+        stdout "\n"
   main arg > @
+

@@ -1,5 +1,5 @@
 #include "stmt.h"
-
+UnaryStmtGen *getUnaryOpertorStatement(const UnaryOperator *pOperator, int shift);
 BinaryStmtGen *getBinaryStatement(const BinaryOperator *pOperator, int shift);
 
 UnaryStmtGen *getCastGen(const ImplicitCastExpr *pExpr, int shift);
@@ -123,6 +123,13 @@ StmtGen *getStmtGen(ConstStmtIterator i, int shift) {
         unaryStmtGen->shift  = shift;
         stmtGen = unaryStmtGen;
     }
+    else if (strcmp(stmtName ,"UnaryOperator") == 0)
+    {
+        const UnaryOperator* op = (UnaryOperator*)(*i);
+        UnaryStmtGen* unaryStmtGen = getUnaryOpertorStatement(op, shift);
+        unaryStmtGen->shift  = shift;
+        stmtGen = unaryStmtGen;
+    }
     else if(strcmp(stmtName , "CompoundStmt") == 0)
     {
         const CompoundStmt* cs = (CompoundStmt*)(*i);
@@ -151,7 +158,16 @@ UnaryStmtGen *getEmptyUnaryGen(const ImplicitCastExpr *pExpr, int shift) {
     return  unaryStmtGen;
 
 }
-
+UnaryStmtGen *getUnaryOpertorStatement(const UnaryOperator *pOperator, int shift) {
+    UnaryStmtGen* unaryStmtGen = new UnaryStmtGen;
+    std::string opName = pOperator->getOpcodeStr(pOperator->getOpcode()).str();
+    if (opName.compare("-") == 0)
+    {
+        unaryStmtGen->postfix = ".neg";
+    }
+    unaryStmtGen-> nestedStmt =  getStmtGen(pOperator->child_begin(), shift + 1);
+    return  unaryStmtGen;
+}
 BinaryStmtGen *getBinaryStatement(const BinaryOperator *pOperator, int shift) {
     BinaryStmtGen* binaryStmtGen = new BinaryStmtGen;
     std::string opName = pOperator->getOpcodeStr().str();
@@ -162,6 +178,22 @@ BinaryStmtGen *getBinaryStatement(const BinaryOperator *pOperator, int shift) {
     else if (opName.compare("+") == 0)
     {
         binaryStmtGen->value = ".add ";
+    }
+    else if (opName.compare("-") == 0)
+    {
+        binaryStmtGen->value = ".sub ";
+    }
+    else if (opName.compare("*") == 0)
+    {
+        binaryStmtGen->value = ".mul ";
+    }
+    else if (opName.compare("/") == 0)
+    {
+        binaryStmtGen->value = ".div ";
+    }
+    else if (opName.compare("%") == 0)
+    {
+        binaryStmtGen->value = ".mod ";
     }
     else
     {
