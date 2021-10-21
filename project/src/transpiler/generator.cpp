@@ -45,6 +45,7 @@ void GlobalFuncGen::Generate(std::string &str) {
     }
     // Далее идет формирование тела функции
     body->Generate(str);
+
 }
 
 void GlobalFuncGen::GenValue(std::string &str) {

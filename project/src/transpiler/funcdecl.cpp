@@ -132,6 +132,9 @@ void getFuncDeclParameters(const FunctionDecl *FD) {
     }
     //TODO добавить статику
     // Формируется глобальная функция со всеми атрибутами
+
+/*
+>>>>>>> eb1ab71056fae932517610dcc1e3a97dc67ebf10
     if(isGlobal) {
         GlobalFuncGen* func = new GlobalFuncGen;
         if(funcName == "main") {
@@ -150,6 +153,8 @@ void getFuncDeclParameters(const FunctionDecl *FD) {
 
         func->globalSpaceGenPtr->Add(func);
     }
+
+*/
 
     //FD->dump();
 }
