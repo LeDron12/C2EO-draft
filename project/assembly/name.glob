@@ -1,0 +1,11 @@
+c_int32 3 > g_a
+c_int32 4 > g_b
+c_int32 0 > g_c
+[arg] > main
+  seq > @
+    ^.g_c.write (^.g_a.add (^.g_b))
+    ^.g_c.write (^.g_a)
+    ^.g_a.write (^.g_b)
+    ^.g_b.write (^.g_c)
+main > @
+
