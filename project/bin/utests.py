@@ -146,6 +146,116 @@ class GlobalTestCase(unittest.TestCase):
         self.compile_run(whoami())
         self.compare()
 
+    # Signed Tests
+    def test_signed_min(self):
+        type = integer[3]
+        value = type[-1]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_signed_max(self):
+        type = integer[3]
+        value = type[-2]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_signed_rnd(self):
+        type = integer[3]
+        value = random.randint(type[-1], type[-2] + 1)
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    # Unsigned Tests
+    def test_unsigned_min(self):
+        type = integer[4]
+        value = type[-1]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_unsigned_max(self):
+        type = integer[4]
+        value = type[-2]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_unsigned_rnd(self):
+        type = integer[4]
+        value = random.randint(type[-1], type[-2] + 1)
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    # Short Tests
+    def test_short_min(self):
+        type = integer[5]
+        value = type[-1]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_short_max(self):
+        type = integer[5]
+        value = type[-2]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_short_rnd(self):
+        type = integer[5]
+        value = random.randint(type[-1], type[-2] + 1)
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    # Unsigned Short Tests
+    def test_unsigned_short_min(self):
+        type = integer[6]
+        value = type[-1]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_unsigned_short_max(self):
+        type = integer[6]
+        value = type[-2]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_unsigned_short_rnd(self):
+        type = integer[6]
+        value = random.randint(type[-1], type[-2] + 1)
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    # Char Tests
+    def test_char_min(self):
+        type = integer[7]
+        value = type[-1]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_char_max(self):
+        type = integer[7]
+        value = type[-2]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_char_rnd(self):
+        type = integer[7]
+        value = random.randint(type[-1], type[-2] + 1)
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
 
 class StaticTestCase(unittest.TestCase):
     def compile_run(self, test_name):
@@ -255,6 +365,116 @@ class StaticTestCase(unittest.TestCase):
 
     def test_unsigned_long_rnd(self):
         type = integer[2]
+        value = random.randint(type[-1], type[-2] + 1)
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    # Signed Tests
+    def test_signed_min(self):
+        type = integer[3]
+        value = type[-1]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_signed_max(self):
+        type = integer[3]
+        value = type[-2]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_signed_rnd(self):
+        type = integer[3]
+        value = random.randint(type[-1], type[-2] + 1)
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    # Unsigned Tests
+    def test_unsigned_min(self):
+        type = integer[4]
+        value = type[-1]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_unsigned_max(self):
+        type = integer[4]
+        value = type[-2]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_unsigned_rnd(self):
+        type = integer[4]
+        value = random.randint(type[-1], type[-2] + 1)
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    # Short Tests
+    def test_short_min(self):
+        type = integer[5]
+        value = type[-1]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_short_max(self):
+        type = integer[5]
+        value = type[-2]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_short_rnd(self):
+        type = integer[5]
+        value = random.randint(type[-1], type[-2] + 1)
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    # Unsigned Short Tests
+    def test_unsigned_short_min(self):
+        type = integer[6]
+        value = type[-1]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_unsigned_short_max(self):
+        type = integer[6]
+        value = type[-2]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_unsigned_short_rnd(self):
+        type = integer[6]
+        value = random.randint(type[-1], type[-2] + 1)
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    # Char Tests
+    def test_char_min(self):
+        type = integer[7]
+        value = type[-1]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_char_max(self):
+        type = integer[7]
+        value = type[-2]
+        self.generate(type, value)
+        self.compile_run(whoami())
+        self.compare()
+
+    def test_char_rnd(self):
+        type = integer[7]
         value = random.randint(type[-1], type[-2] + 1)
         self.generate(type, value)
         self.compile_run(whoami())
