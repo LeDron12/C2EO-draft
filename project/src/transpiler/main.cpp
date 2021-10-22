@@ -36,6 +36,7 @@ int main(int argc, const char **argv) {
 
     int parser_argc = 3;
     const char **parser_argv = transform_argv(argv);
+    const char* inputFileName = argv[1];
     std::string filename = argv[2];
 
     SpaceGen globGen, staticGen;
