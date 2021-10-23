@@ -3,7 +3,7 @@ UnaryStmtGen *getUnaryOpertorStatement(const UnaryOperator *pOperator, int shift
 BinaryStmtGen *getBinaryStatement(const BinaryOperator *pOperator, int shift);
 
 UnaryStmtGen *getCastGen(const ImplicitCastExpr *pExpr, int shift);
-UnaryStmtGen *getEmptyUnaryGen(const ImplicitCastExpr *pExpr, int shift);
+UnaryStmtGen *getEmptyUnaryGen(const Expr *pExpr, int shift);
 
 UnaryStmtGen *getDeclName(const DeclRefExpr *pExpr);
 
@@ -104,7 +104,7 @@ StmtGen *getStmtGen(ConstStmtIterator i, int shift) {
     }
     else if (strcmp(stmtName , "ParenExpr") == 0)
     {
-        const ImplicitCastExpr* op = (ImplicitCastExpr*)(*i);
+        const ParenExpr* op = (ParenExpr*)(*i);
         UnaryStmtGen* unaryStmtGen = getEmptyUnaryGen(op, shift);
         unaryStmtGen->shift  = shift;
         stmtGen = unaryStmtGen;
@@ -151,7 +151,7 @@ UnaryStmtGen *getCastGen(const ImplicitCastExpr *pExpr, int shift) {
     return getEmptyUnaryGen(pExpr,shift);
 }
 
-UnaryStmtGen *getEmptyUnaryGen(const ImplicitCastExpr *pExpr, int shift) {
+UnaryStmtGen *getEmptyUnaryGen(const Expr *pExpr, int shift) {
     UnaryStmtGen* unaryStmtGen = new UnaryStmtGen;
     unaryStmtGen->value = "";
     unaryStmtGen-> nestedStmt =  getStmtGen(pExpr->child_begin(), shift + 1);
