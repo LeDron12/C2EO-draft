@@ -11,4 +11,3 @@ c_float64 0.0 > g_x
       stdout (^.g_e.as-string)
       stdout "\n"
 main arg > @
-

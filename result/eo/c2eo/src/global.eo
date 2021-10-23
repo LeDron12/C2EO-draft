@@ -24,4 +24,3 @@
         stdout (^.g_e.as-string)
         stdout "\n"
   main arg > @
-
