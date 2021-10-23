@@ -1,19 +1,19 @@
 #include "stmt.h"
-UnaryStmtGen *getUnaryOpertorStatement(const UnaryOperator *pOperator, int shift);
+UnaryStmtGen *getUnaryOpertorStatement(const UnaryOperator *pOperator,  int shift);
 BinaryStmtGen *getBinaryStatement(const BinaryOperator *pOperator, int shift);
 
-UnaryStmtGen *getCastGen(const ImplicitCastExpr *pExpr, int shift);
-UnaryStmtGen *getEmptyUnaryGen(const Expr *pExpr, int shift);
+UnaryStmtGen *getCastGen(const ImplicitCastExpr *pExpr,  int shift);
+UnaryStmtGen *getEmptyUnaryGen(const Expr *pExpr,  int shift);
 
 UnaryStmtGen *getDeclName(const DeclRefExpr *pExpr);
 
 StmtGen *getStmtGen(ConstStmtIterator i, int shift);
 
-CompoundStmtGen *getCompoundStmtOutputGenerator(ImplicitCastExpr *pExpr, int shift);
+CompoundStmtGen *getCompoundStmtOutputGenerator(Expr *pExpr, int shift);
 
 //-------------------------------------------------------------------------------------------------
 // Определение и тестовый вывод основных параметров составного оператора
-void getCompoundStmtParameters(const CompoundStmt* CS, int shift) {
+void getCompoundStmtParameters(const CompoundStmt* CS,int shift) {
     std::string strShift = "";
     for(int i = 0; i < shift; i++) {strShift += "  ";}
     bool isBodyEmpty = CS->body_empty();
@@ -41,7 +41,7 @@ void getCompoundStmtParameters(const CompoundStmt* CS, int shift) {
                 const ImplicitCastExpr* exp = (ImplicitCastExpr*)(*i);
                 llvm::outs()  << "             stmt class   " <<exp->child_begin()->getStmtClassName() << "\n";
                 const DeclRefExpr* var = (DeclRefExpr*)(*(exp->child_begin()));
-                llvm::outs()  << "                var ref ID   " <<var->getDecl()->getID() << "\n";
+                llvm::outs()  << "                var ref ID   " <<var->getFoundDecl()<< "\n";
 
             }
         }
@@ -49,7 +49,7 @@ void getCompoundStmtParameters(const CompoundStmt* CS, int shift) {
     }
 }
 
-CompoundStmtGen* getCompoundStmtGenerator(const CompoundStmt *CS,  int shift, bool isDecorator) {
+CompoundStmtGen* getCompoundStmtGenerator(const CompoundStmt *CS, int shift, bool isDecorator) {
     CompoundStmtGen* compoundStmt = new CompoundStmtGen;
     compoundStmt->value = "seq";
     if (isDecorator)
@@ -70,8 +70,8 @@ CompoundStmtGen* getCompoundStmtGenerator(const CompoundStmt *CS,  int shift, bo
     }
     return compoundStmt;
 }
-
-CompoundStmtGen *getCompoundStmtOutputGenerator(ImplicitCastExpr *pExpr, int shift) {
+//Временное решение для вывода
+CompoundStmtGen *getCompoundStmtOutputGenerator(Expr *pExpr, int shift) {
     CompoundStmtGen* compoundStmt = new CompoundStmtGen;
     compoundStmt->value = "seq";
     compoundStmt->shift = shift;
@@ -142,13 +142,14 @@ StmtGen *getStmtGen(ConstStmtIterator i, int shift) {
 // Метод для получения имени переменной.
 UnaryStmtGen *getDeclName(const DeclRefExpr *pExpr) {
     UnaryStmtGen* unaryStmtGen = new UnaryStmtGen;
-    unaryStmtGen->value = AbstractGen::identifiers[pExpr->getDecl()->getID()];
+    //pExpr->printPretty();
+    unaryStmtGen->value = AbstractGen::identifiers[reinterpret_cast<uint64_t>(pExpr->getFoundDecl())];
     unaryStmtGen-> nestedStmt = nullptr;
     return  unaryStmtGen;
 }
 
 UnaryStmtGen *getCastGen(const ImplicitCastExpr *pExpr, int shift) {
-    return getEmptyUnaryGen(pExpr,shift);
+    return getEmptyUnaryGen(pExpr,shift + 1);
 }
 
 UnaryStmtGen *getEmptyUnaryGen(const Expr *pExpr, int shift) {
@@ -158,7 +159,7 @@ UnaryStmtGen *getEmptyUnaryGen(const Expr *pExpr, int shift) {
     return  unaryStmtGen;
 
 }
-UnaryStmtGen *getUnaryOpertorStatement(const UnaryOperator *pOperator, int shift) {
+UnaryStmtGen *getUnaryOpertorStatement(const UnaryOperator *pOperator,  int shift) {
     UnaryStmtGen* unaryStmtGen = new UnaryStmtGen;
     std::string opName = pOperator->getOpcodeStr(pOperator->getOpcode()).str();
     if (opName.compare("-") == 0)
@@ -194,6 +195,30 @@ BinaryStmtGen *getBinaryStatement(const BinaryOperator *pOperator, int shift) {
     else if (opName.compare("%") == 0)
     {
         binaryStmtGen->value = ".mod ";
+    }
+    else if (opName.compare("==") == 0)
+    {
+        binaryStmtGen->value = ".eq ";
+    }
+    else if (opName.compare("!=") == 0)
+    {
+        binaryStmtGen->value = ".neq ";
+    }
+    else if (opName.compare("<") == 0)
+    {
+        binaryStmtGen->value = ".less ";
+    }
+    else if (opName.compare("<=") == 0)
+    {
+        binaryStmtGen->value = ".leq ";
+    }
+    else if (opName.compare(">") == 0)
+    {
+        binaryStmtGen->value = ".greater ";
+    }
+    else if (opName.compare(">=") == 0)
+    {
+        binaryStmtGen->value = ".geq ";
     }
     else
     {

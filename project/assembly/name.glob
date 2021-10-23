@@ -1,14 +1,25 @@
-c_int32 1 > g_a
-c_int32 2 > g_b
-c_int32 3 > g_c
-c_int32 4 > g_d
-c_int32 0 > g_e
-c_float64 0.0 > g_x
+c_bool false > g_a
+c_bool true > g_b
+c_bool false > g_c
+c_bool false > g_d
+c_bool false > g_e
+c_bool false > g_f
+c_bool false > g_g
+c_bool false > g_h
+c_bool false > g_i
+c_bool false > g_j
+c_int32 -3 > g_x
+c_int32 3 > g_y
+c_int32 0 > g_zero
 [arg] > main
   seq > @
-    ^.g_e.write (((^.g_a.add (^.g_b)).mul (^.g_c)).sub (^.g_d))
-    seq
-      stdout (^.g_e.as-string)
-      stdout "\n"
+    ^.g_c.write (^.g_a.eq (^.g_b))
+    ^.g_d.write (^.g_a.neq (^.g_b))
+    ^.g_e.write (^.g_a.less (^.g_b))
+    ^.g_f.write (^.g_a.leq (^.g_b))
+    ^.g_g.write (^.g_a.greater (^.g_b))
+    ^.g_h.write (^.g_a.geq (^.g_b))
+    ^.g_i.write (((^.g_x.less (^.g_zero)).mul (^.g_x.neg)).add ((^.g_x.geq (^.g_zero)).mul (^.g_x)))
+    ^.g_j.write (((^.g_y.less (^.g_zero)).mul (^.g_y.neg)).add ((^.g_y.geq (^.g_zero)).mul (^.g_y)))
 main arg > @
 

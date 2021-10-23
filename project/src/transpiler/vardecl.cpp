@@ -1,4 +1,4 @@
-//#define  VAR_DECL_INFO
+#define  VAR_DECL_INFO
 // Функции, используемые при анализе переменных
 
 #include "vardecl.h"
@@ -10,7 +10,7 @@ std::string getIntTypeByVar(const VarDecl *VD);
 void getVarDeclParameters(const VarDecl *VD) {
     // Имя переменной
     auto varName = VD->getNameAsString();
-    auto varID = VD->getID();
+    auto varID = reinterpret_cast<uint64_t>(VD);
 #ifdef VAR_DECL_INFO
     llvm::outs() << "Name of Variable: " << varName << "\n";
     llvm::outs() << "  Var Kind Name: " << VD->getDeclKindName() << "\n";
