@@ -177,15 +177,19 @@ void getVarDeclParameters(const VarDecl *VD) {
     // Наличие начальной инициализации
     auto isInit = VD->hasInit();
     std::string strValue = "";
-#ifdef VAR_DECL_INFO
+
     if (isInit) {
+#ifdef VAR_DECL_INFO
         llvm::outs() << "  has Initializer\n";
+#endif
         initValueAnalysis(VD, strValue);
     } else {
+#ifdef VAR_DECL_INFO
         llvm::outs() << "  has not Initializer\n";
+#endif
         initZeroValueAnalysis(VD, strValue);
     }
-#endif
+
 
 
 

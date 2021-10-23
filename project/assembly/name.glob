@@ -1,9 +1,9 @@
-c_int32  > g_a
-c_int16  > g_b
-c_int32  > g_c
-c_int64  > g_d
-c_int16  > g_e
-c_float64  > g_x
+c_int32 0 > g_a
+c_int16 0 > g_b
+c_int32 0 > g_c
+c_int64 0 > g_d
+c_int16 0 > g_e
+c_float64 0.0 > g_x
 [arg] > main
   seq > @
     seq
