@@ -1,0 +1,13 @@
+c_int32 1 > g_a
+c_int32 2 > g_b
+c_int32 3 > g_c
+c_int32 4 > g_d
+c_int32 0 > g_e
+c_float64 0.0 > g_x
+[arg] > main
+  seq > @
+    ^.g_e.write (((^.g_a.add (^.g_b)).mul (^.g_c)).sub (^.g_d))
+    seq
+      stdout (^.g_e.as-string)
+      stdout "\n"
+main arg > @
