@@ -5,17 +5,18 @@ from system_vars import *
 
 
 def compile_run():
-    if os.system(' '.join(['gcc', f'{filename2}', '-w', f'>>{logfile1}', f'2>>{logfile2}'])):
+    if os.system(' '.join(['gcc', f'{filename2}', '-w', f'>>{logfile1}', f'2>>{logfile2}'])) != 0:
         return False, 'can not compile c-code'
-    if os.system(' '.join(['./a.out', f'>{c_out}', f'2>>{logfile2}'])):
+    if os.system(' '.join(['./a.out', f'>{c_out}', f'2>>{logfile2}'])) != 0:
         return False, 'can not run c-code'
-    if os.system(' '.join([launcher, f'{filename1}', f'>>{logfile1}', f'2>>{logfile2}'])):
+    if os.system(' '.join([launcher, f'{filename1}', f'>>{logfile1}', f'2>>{logfile2}'])) != 0:
         return False, 'can not transpile c-code to eo-code'
-    if os.system(' '.join(['mvn -f', resultDir, 'clean compile', f'>>{logfile1}', f'2>>{logfile2}'])):
+    if os.system(' '.join(['mvn -f', resultDir, 'clean compile', f'>>{logfile1}', f'2>>{logfile2}'])) != 0:
         return False, 'can not compile eo-code using mvn'
+    # todo: show global.eo
     if os.system(' '.join(['java', '-cp', f'{resultDir}/target/classes:'
                                           f'{resultDir}/target/eo-runtime.jar',
-                           'org.eolang.Main', 'c2eo.app', f'>{eo_out}', f'2>>{logfile2}'])):
+                           'org.eolang.Main', 'c2eo.app', f'>{eo_out}', f'2>>{logfile2}'])) != 0:
         return False, 'can not run eo-code'
     return True, 'too easily'
 
@@ -26,10 +27,12 @@ def generate(c_type, value, static=False):
     with open(filename1, 'w') as fout:
         print(code % ('', ''),
               file=fout)
+    # todo: show code1
     code = '\n'.join(['#include "stdio.h"', code])
     with open(filename2, 'w') as fout:
         print(code % (f'printf("%{c_type[0]}\\n", ', ')'),
               file=fout)
+    # todo: show code2
 
 
 def compare():
@@ -41,8 +44,9 @@ def compare():
                 fromfile=c_out,
                 tofile=eo_out,
             )
-            print(len(list(diff)))
-            for line in diff:
-                sys.stdout.write(line)
+            # todo: show diff
+            # print(list(diff))
+            # for line in diff:
+            #    print(line)
             # self.assertEqual(len(list(diff)), 0, msg='there are some diffs:')
-            return True, 'are there some diffs?'
+            return len(list(diff)) == 0, 'there are some diffs'
