@@ -34,15 +34,7 @@ def whoami():
 
 
 class GlobalTestCase(unittest.TestCase):
-    def compile_run(self, test_name):
-        if True:
-            ans = os.system(' '.join(['echo', "#" * 10, f'>>{logfile1}', f'2>>{logfile2}']))
-            self.assertEqual(ans, 0, msg='os-lib error')
-            ans = os.system(
-                ' '.join(['echo', f'{"#" * 3} TEST-CASE#{test_name} {"#" * 3}', f'>>{logfile1}', f'2>>{logfile2}']))
-            self.assertEqual(ans, 0, msg='os-lib error')
-            ans = os.system(' '.join(['echo', "#" * 10, f'>>{logfile1}', f'2>>{logfile2}']))
-            self.assertEqual(ans, 0, msg='os-lib error')
+    def compile_run(self):
         ans = os.system(' '.join(['gcc', f'{filename2}', '-w', f'>>{logfile1}', f'2>>{logfile2}']))
         self.assertEqual(ans, 0, msg='can not compile c-code')
         ans = os.system(' '.join(['./a.out', f'>{c_out}', f'2>>{logfile2}']))
@@ -82,191 +74,183 @@ class GlobalTestCase(unittest.TestCase):
 
     # Long Long Tests
     def test_long_long_min(self):
-        type = integer[0]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[0]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_long_long_max(self):
-        type = integer[0]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[0]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_long_long_rnd(self):
-        type = integer[0]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[0]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     # Long Tests
     def test_long_min(self):
-        type = integer[1]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[1]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_long_max(self):
-        type = integer[1]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[1]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_long_rnd(self):
-        type = integer[1]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[1]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     # Unsigned Long Tests
     def test_unsigned_long_min(self):
-        type = integer[2]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[2]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_unsigned_long_max(self):
-        type = integer[2]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[2]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_unsigned_long_rnd(self):
-        type = integer[2]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[2]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     # Signed Tests
     def test_signed_min(self):
-        type = integer[3]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[3]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_signed_max(self):
-        type = integer[3]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[3]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_signed_rnd(self):
-        type = integer[3]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[3]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     # Unsigned Tests
     def test_unsigned_min(self):
-        type = integer[4]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[4]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_unsigned_max(self):
-        type = integer[4]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[4]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_unsigned_rnd(self):
-        type = integer[4]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[4]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     # Short Tests
     def test_short_min(self):
-        type = integer[5]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[5]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_short_max(self):
-        type = integer[5]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[5]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_short_rnd(self):
-        type = integer[5]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[5]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     # Unsigned Short Tests
     def test_unsigned_short_min(self):
-        type = integer[6]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[6]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_unsigned_short_max(self):
-        type = integer[6]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[6]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_unsigned_short_rnd(self):
-        type = integer[6]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[6]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     # Char Tests
     def test_char_min(self):
-        type = integer[7]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[7]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_char_max(self):
-        type = integer[7]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[7]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_char_rnd(self):
-        type = integer[7]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[7]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
 
 class StaticTestCase(unittest.TestCase):
-    def compile_run(self, test_name):
-        if True:
-            ans = os.system(' '.join(['echo', "#" * 10, f'>>{logfile1}', f'2>>{logfile2}']))
-            self.assertEqual(ans, 0, msg='os-lib error')
-            ans = os.system(
-                ' '.join(['echo', f'{"#" * 3} TEST-CASE#{test_name} {"#" * 3}', f'>>{logfile1}', f'2>>{logfile2}']))
-            self.assertEqual(ans, 0, msg='os-lib error')
-            ans = os.system(' '.join(['echo', "#" * 10, f'>>{logfile1}', f'2>>{logfile2}']))
-            self.assertEqual(ans, 0, msg='os-lib error')
+    def compile_run(self):
         ans = os.system(' '.join(['gcc', f'{filename2}', '-w', f'>>{logfile1}', f'2>>{logfile2}']))
         self.assertEqual(ans, 0, msg='can not compile c-code')
         ans = os.system(' '.join(['./a.out', f'>{c_out}', f'2>>{logfile2}']))
@@ -306,178 +290,178 @@ class StaticTestCase(unittest.TestCase):
 
     # Long Long Tests
     def test_long_long_min(self):
-        type = integer[0]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[0]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_long_long_max(self):
-        type = integer[0]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[0]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_long_long_rnd(self):
-        type = integer[0]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[0]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     # Long Tests
     def test_long_min(self):
-        type = integer[1]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[1]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_long_max(self):
-        type = integer[1]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[1]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_long_rnd(self):
-        type = integer[1]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[1]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     # Unsigned Long Tests
     def test_unsigned_long_min(self):
-        type = integer[2]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[2]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_unsigned_long_max(self):
-        type = integer[2]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[2]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_unsigned_long_rnd(self):
-        type = integer[2]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[2]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     # Signed Tests
     def test_signed_min(self):
-        type = integer[3]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[3]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_signed_max(self):
-        type = integer[3]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[3]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_signed_rnd(self):
-        type = integer[3]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[3]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     # Unsigned Tests
     def test_unsigned_min(self):
-        type = integer[4]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[4]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_unsigned_max(self):
-        type = integer[4]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[4]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_unsigned_rnd(self):
-        type = integer[4]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[4]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     # Short Tests
     def test_short_min(self):
-        type = integer[5]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[5]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_short_max(self):
-        type = integer[5]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[5]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_short_rnd(self):
-        type = integer[5]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[5]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     # Unsigned Short Tests
     def test_unsigned_short_min(self):
-        type = integer[6]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[6]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_unsigned_short_max(self):
-        type = integer[6]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[6]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_unsigned_short_rnd(self):
-        type = integer[6]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[6]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     # Char Tests
     def test_char_min(self):
-        type = integer[7]
-        value = type[-1]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[7]
+        value = c_type[-1]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_char_max(self):
-        type = integer[7]
-        value = type[-2]
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[7]
+        value = c_type[-2]
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
     def test_char_rnd(self):
-        type = integer[7]
-        value = random.randint(type[-1], type[-2] + 1)
-        self.generate(type, value)
-        self.compile_run(whoami())
+        c_type = integer[7]
+        value = random.randint(c_type[-1], c_type[-2] + 1)
+        self.generate(c_type, value)
+        self.compile_run()
         self.compare()
 
 
