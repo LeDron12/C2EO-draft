@@ -12,10 +12,13 @@ StmtGen *getStmtGen(ConstStmtIterator i, int shift);
 CompoundStmtGen *getCompoundStmtOutputGenerator(Expr *pExpr, int shift);
 
 UnaryStmtGen *getIntegerLiteralGen(const IntegerLiteral *pLiteral, int shift);
+UnaryStmtGen *getASPIntIntegerLiteralGen(const APInt pNum, bool isSignedInt, int shift);
+
+ASTContext* context;
 
 //-------------------------------------------------------------------------------------------------
 // Определение и тестовый вывод основных параметров составного оператора
-void getCompoundStmtParameters(const CompoundStmt* CS,int shift) {
+void getCompoundStmtParameters(const CompoundStmt* CS,ASTContext* context ,int shift) {
     std::string strShift = "";
     for(int i = 0; i < shift; i++) {strShift += "  ";}
     bool isBodyEmpty = CS->body_empty();
@@ -34,7 +37,7 @@ void getCompoundStmtParameters(const CompoundStmt* CS,int shift) {
         Stmt::StmtClass stmtClass = (*i)->getStmtClass();
         llvm::outs() << "      It is " << stmtName << " stmtClass = " <<  stmtClass << "\n";
         const clang::BinaryOperator* op = (BinaryOperator*)(*i);
-        llvm::outs() << "      operator: " << op->getOpcodeStr() <<"\n";
+        llvm::outs() << "      operator: " << op->getOpcodeStr() << " isEval " << op->isEvaluatable(*context) <<"\n";
         for(BinaryOperator::const_child_iterator i = op->child_begin(); i != op->child_end(); i++)
         {
             llvm::outs()  << "          stmt class   " <<(*i)->getStmtClassName() << "\n";
@@ -51,7 +54,8 @@ void getCompoundStmtParameters(const CompoundStmt* CS,int shift) {
     }
 }
 
-CompoundStmtGen* getCompoundStmtGenerator(const CompoundStmt *CS, int shift, bool isDecorator) {
+CompoundStmtGen* getCompoundStmtGenerator(const CompoundStmt *CS,ASTContext* context, int shift, bool isDecorator) {
+    ::context = context;
     CompoundStmtGen* compoundStmt = new CompoundStmtGen;
     compoundStmt->value = "seq";
     if (isDecorator)
@@ -100,9 +104,16 @@ StmtGen *getStmtGen(ConstStmtIterator i, int shift) {
     if (strcmp(stmtName ,"BinaryOperator") == 0)
     {
         const BinaryOperator* op = (BinaryOperator*)(*i);
-        BinaryStmtGen* binaryStmtGen = getBinaryStatement(op, shift);
-        binaryStmtGen->shift  = shift;
-        stmtGen = binaryStmtGen;
+        if(op->isIntegerConstantExpr(*context))
+        {
+            Optional<llvm::APSInt> val = op->getIntegerConstantExpr(*context);
+            stmtGen = getASPIntIntegerLiteralGen(val.getValue(), true,shift);
+        }
+        else {
+            BinaryStmtGen *binaryStmtGen = getBinaryStatement(op, shift);
+            binaryStmtGen->shift = shift;
+            stmtGen = binaryStmtGen;
+        }
     }
     else if (strcmp(stmtName , "ParenExpr") == 0)
     {
@@ -142,15 +153,20 @@ StmtGen *getStmtGen(ConstStmtIterator i, int shift) {
     else if(strcmp(stmtName , "CompoundStmt") == 0)
     {
         const CompoundStmt* cs = (CompoundStmt*)(*i);
-        CompoundStmtGen* compoundStmtGen = getCompoundStmtGenerator(cs,shift);
+        CompoundStmtGen* compoundStmtGen = getCompoundStmtGenerator(cs,context,shift);
         stmtGen = compoundStmtGen;
     }
     return stmtGen;
 }
 
 UnaryStmtGen *getIntegerLiteralGen(const IntegerLiteral *pLiteral, int shift) {
+
+    return  getASPIntIntegerLiteralGen(pLiteral->getValue(),pLiteral->getType()->isSignedIntegerType(), shift);
+}
+
+UnaryStmtGen *getASPIntIntegerLiteralGen(const APInt pNum, bool isSignedInt, int shift) {
     UnaryStmtGen* unaryStmtGen = new UnaryStmtGen;
-    unaryStmtGen->value = pLiteral->getValue().toString(10, pLiteral->getType()->isSignedIntegerType());
+    unaryStmtGen->value = pNum.toString(10,isSignedInt);
     unaryStmtGen-> nestedStmt = nullptr;
     return  unaryStmtGen;
 }

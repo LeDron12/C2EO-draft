@@ -1,25 +1,9 @@
-c_bool 0 > g_a
-c_bool 1 > g_b
-c_bool 0 > g_c
-c_bool 0 > g_d
-c_bool 0 > g_e
-c_bool 0 > g_f
-c_bool 0 > g_g
-c_bool 0 > g_h
-c_bool 0 > g_i
-c_bool 0 > g_j
-c_int32 -3 > g_x
-c_int32 3 > g_y
-c_int32 0 > g_zero
+c_int32 2 > g_a
 [arg] > main
   seq > @
-    ^.g_c.write (^.g_a.eq (^.g_b))
-    ^.g_d.write (^.g_a.neq (^.g_b))
-    ^.g_e.write (^.g_a.less (^.g_b))
-    ^.g_f.write (^.g_a.leq (^.g_b))
-    ^.g_g.write (^.g_a.greater (^.g_b))
-    ^.g_h.write (^.g_a.geq (^.g_b))
-    ^.g_i.write (((^.g_x.less (^.g_zero)).mul (^.g_x.neg)).add ((^.g_x.geq (^.g_zero)).mul (^.g_x)))
-    ^.g_j.write (((^.g_y.less (^.g_zero)).mul (^.g_y.neg)).add ((^.g_y.geq (^.g_zero)).mul (^.g_y)))
+    ^.g_a.write (^.g_a.add (4))
+    seq
+      stdout (^.g_a.as-string)
+      stdout "\n"
 main arg > @
 
