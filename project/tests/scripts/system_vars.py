@@ -11,6 +11,12 @@ integer = [
     ['d', '_Bool', 1, 0],
 ]
 
+real = [
+    ['f', 'float', 3.40282e+38, -3.40282e+38],
+    ['f', 'double', 1.79769e+308, -1.79769e+308],
+    ['Lf', 'long double', 1.79769e+308, -1.79769e+308]
+]
+
 directory = 'env'
 filename1 = f'{directory}/code1.c'
 filename2 = f'{directory}/code2.c'
