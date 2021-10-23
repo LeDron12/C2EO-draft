@@ -11,6 +11,8 @@ StmtGen *getStmtGen(ConstStmtIterator i, int shift);
 
 CompoundStmtGen *getCompoundStmtOutputGenerator(Expr *pExpr, int shift);
 
+UnaryStmtGen *getIntegerLiteralGen(const IntegerLiteral *pLiteral, int shift);
+
 //-------------------------------------------------------------------------------------------------
 // Определение и тестовый вывод основных параметров составного оператора
 void getCompoundStmtParameters(const CompoundStmt* CS,int shift) {
@@ -109,6 +111,13 @@ StmtGen *getStmtGen(ConstStmtIterator i, int shift) {
         unaryStmtGen->shift  = shift;
         stmtGen = unaryStmtGen;
     }
+    else if (strcmp(stmtName , "IntegerLiteral") == 0)
+    {
+        const IntegerLiteral* op = (IntegerLiteral*)(*i);
+        UnaryStmtGen* unaryStmtGen = getIntegerLiteralGen(op, shift);
+        unaryStmtGen->shift  = shift;
+        stmtGen = unaryStmtGen;
+    }
     else if (strcmp(stmtName , "ImplicitCastExpr") == 0)
     {
         const ImplicitCastExpr* op = (ImplicitCastExpr*)(*i);
@@ -137,6 +146,13 @@ StmtGen *getStmtGen(ConstStmtIterator i, int shift) {
         stmtGen = compoundStmtGen;
     }
     return stmtGen;
+}
+
+UnaryStmtGen *getIntegerLiteralGen(const IntegerLiteral *pLiteral, int shift) {
+    UnaryStmtGen* unaryStmtGen = new UnaryStmtGen;
+    unaryStmtGen->value = pLiteral->getValue().toString(10, pLiteral->getType()->isSignedIntegerType());
+    unaryStmtGen-> nestedStmt = nullptr;
+    return  unaryStmtGen;
 }
 
 // Метод для получения имени переменной.

@@ -298,10 +298,7 @@ void initValueAnalysis(const VarDecl *VD, std::string &str) {
         if(initVal->isInt()) {
             auto intValue = initVal->getInt().getExtValue();
             //llvm::outs() << intValue;
-            if(typePtr->isBooleanType()) {
-                if(intValue == 0) {str = "false";}
-                else {str = "true";}
-            } else if(typePtr->isCharType()) {
+            if(typePtr->isCharType()) {
                 str = "'";
                 str += char(intValue);
                 str += "'";
@@ -333,11 +330,9 @@ void initZeroValueAnalysis(const VarDecl *VD, std::string &str) {
     // Анализ размера переменной для определения разновидности данных
     auto typeInfo = VD->getASTContext().getTypeInfo(qualType);
     auto size = typeInfo.Width;
-    if(typePtr->isBooleanType()) {
-        str = "false";
-    } else if(typePtr->isCharType()) {
+    if(typePtr->isCharType()) {
         str = "'\\0'";
-    } else if (typePtr->isIntegerType()){
+    } else if (typePtr->isIntegerType() || typePtr->isBooleanType()){
         str = "0";
     } else if(typePtr->isRealFloatingType()) {
         str = "0.0";
