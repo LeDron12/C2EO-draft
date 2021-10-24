@@ -1,5 +1,8 @@
 import os
 import difflib
+import inspect
+import sys
+
 from system_vars import *
 
 
@@ -59,4 +62,9 @@ def compare():
                 print(line)
             return len(list(diff)) == 0, 'there are some diffs'
 
-# todo: print(test_name)
+
+def showname():
+    sys.stdout.flush()
+    print()
+    print('#'*16)
+    print(sys._getframe(1).f_globals['__name__'], sys._getframe(1).f_code.co_name)

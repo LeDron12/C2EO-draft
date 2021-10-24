@@ -15,6 +15,6 @@ if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(global_tests.GlobalTestCase))
     suite.addTest(unittest.makeSuite(static_tests.StaticTestCase))
-    unittest.TextTestRunner(verbosity=0).run(suite)
+    unittest.TextTestRunner(verbosity=2).run(suite)
 
     sys.stdout.close()
