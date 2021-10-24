@@ -1,9 +1,9 @@
-import unittest
+from utests import unittest
 from system_vars import *
 import fun
 
 
-class GlobalTestCase(unittest.TestCase):
+class StaticTestCase(unittest.TestCase):
     # Long Long Tests
     def test_long_long_min(self):
         c_type = integer[0]

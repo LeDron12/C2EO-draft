@@ -11,7 +11,7 @@
 
 [arg] > global
 
-  c_int64 9223372036854775790 > g_var
+  c_int64 -9223372036854775808 > g_var
   [arg] > main
     seq > @
       seq

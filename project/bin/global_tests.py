@@ -1,4 +1,4 @@
-import unittest
+from utests import unittest
 from system_vars import *
 import fun
 

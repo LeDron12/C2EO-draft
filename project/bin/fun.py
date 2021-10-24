@@ -58,3 +58,5 @@ def compare():
             for line in diff:
                 print(line)
             return len(list(diff)) == 0, 'there are some diffs'
+
+# todo: print(test_name)
