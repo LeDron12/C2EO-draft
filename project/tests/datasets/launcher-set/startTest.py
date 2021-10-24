@@ -13,4 +13,8 @@ if __name__ == '__main__':
     os.system('python3 startLauncher.py')
     testCount += 1
     os.chdir(currentDir)
+    os.chdir('./testEmpty/')
+    os.system('python3 startLauncher.py')
+    testCount += 1
+    os.chdir(currentDir)
     print(f'The End. {testCount} tests passed')

@@ -3,9 +3,9 @@ import os
 
 if __name__ == '__main__':
     currentDir = os.getcwd()
-    os.system('clang swapBCA.c')
+    os.system('clang testEmpty.c')
     os.system('./a.out > cResult.txt')
-    os.system('../../../../bin/launcher.py swapBCAeo.c')
+    os.system('../../../../bin/launcher.py testEmptyEo.c')
 
     os.chdir('../../../../../result/')
     os.system('ls')
