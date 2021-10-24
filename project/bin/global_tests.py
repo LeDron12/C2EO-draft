@@ -646,7 +646,7 @@ class GlobalTestCase(unittest.TestCase):
 
     # Float Tests
     def test_float_min(self):
-        c_type = real[9]
+        c_type = real[0]
         value = c_type[-1]
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
@@ -655,7 +655,7 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_float_max(self):
-        c_type = real[9]
+        c_type = real[0]
         value = c_type[-2]
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
@@ -664,8 +664,8 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_float_min_overflow(self):
-        c_type = real[9]
-        value = c_type[-1] * 18
+        c_type = real[0]
+        value = f'{c_type[-1]} * 2'
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
         self.assertTrue(res, msg=msg)
@@ -673,8 +673,8 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_float_max_overflow(self):
-        c_type = real[9]
-        value = c_type[-2] * 18
+        c_type = real[0]
+        value = f'{c_type[-2]} * 2'
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
         self.assertTrue(res, msg=msg)
@@ -682,8 +682,8 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_float_1(self):
-        c_type = real[9]
-        value = c_type[-1] + (c_type[-2] + 1 - c_type[-1]) // 4 * 1
+        c_type = real[0]
+        value = c_type[-1] // 2
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
         self.assertTrue(res, msg=msg)
@@ -691,8 +691,8 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_float_2(self):
-        c_type = real[9]
-        value = c_type[-1] + (c_type[-2] + 1 - c_type[-1]) // 4 * 2
+        c_type = real[0]
+        value = 1 / 9
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
         self.assertTrue(res, msg=msg)
@@ -700,8 +700,8 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_float_3(self):
-        c_type = real[9]
-        value = c_type[-1] + (c_type[-2] + 1 - c_type[-1]) // 4 * 3
+        c_type = real[0]
+        value = c_type[-2] // 2
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
         self.assertTrue(res, msg=msg)
@@ -710,7 +710,7 @@ class GlobalTestCase(unittest.TestCase):
 
     # Double Tests
     def test_double_min(self):
-        c_type = real[9]
+        c_type = real[1]
         value = c_type[-1]
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
@@ -719,7 +719,7 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_double_max(self):
-        c_type = real[9]
+        c_type = real[1]
         value = c_type[-2]
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
@@ -728,8 +728,8 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_double_min_overflow(self):
-        c_type = real[9]
-        value = c_type[-1] * 18
+        c_type = real[1]
+        value = f'{c_type[-1]} * 2'
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
         self.assertTrue(res, msg=msg)
@@ -737,8 +737,8 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_double_max_overflow(self):
-        c_type = real[9]
-        value = c_type[-2] * 18
+        c_type = real[1]
+        value = f'{c_type[-2]} * 2'
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
         self.assertTrue(res, msg=msg)
@@ -746,8 +746,8 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_double_1(self):
-        c_type = real[9]
-        value = c_type[-1] + (c_type[-2] + 1 - c_type[-1]) // 4 * 1
+        c_type = real[1]
+        value = c_type[-1] // 2
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
         self.assertTrue(res, msg=msg)
@@ -755,8 +755,8 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_double_2(self):
-        c_type = real[9]
-        value = c_type[-1] + (c_type[-2] + 1 - c_type[-1]) // 4 * 2
+        c_type = real[1]
+        value = 1 / 9
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
         self.assertTrue(res, msg=msg)
@@ -764,8 +764,8 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_double_3(self):
-        c_type = real[9]
-        value = c_type[-1] + (c_type[-2] + 1 - c_type[-1]) // 4 * 3
+        c_type = real[1]
+        value = c_type[-2] // 2
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
         self.assertTrue(res, msg=msg)
@@ -774,7 +774,7 @@ class GlobalTestCase(unittest.TestCase):
 
     # Long Double Tests
     def test_long_double_min(self):
-        c_type = real[9]
+        c_type = real[2]
         value = c_type[-1]
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
@@ -783,7 +783,7 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_long_double_max(self):
-        c_type = real[9]
+        c_type = real[2]
         value = c_type[-2]
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
@@ -792,8 +792,8 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_long_double_min_overflow(self):
-        c_type = real[9]
-        value = c_type[-1] * 18
+        c_type = real[2]
+        value = f'{c_type[-1]} * 2'
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
         self.assertTrue(res, msg=msg)
@@ -801,8 +801,8 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_long_double_max_overflow(self):
-        c_type = real[9]
-        value = c_type[-2] * 18
+        c_type = real[2]
+        value = f'{c_type[-2]} * 2'
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
         self.assertTrue(res, msg=msg)
@@ -810,8 +810,8 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_long_double_1(self):
-        c_type = real[9]
-        value = c_type[-1] + (c_type[-2] + 1 - c_type[-1]) // 4 * 1
+        c_type = real[2]
+        value = c_type[-1] // 2
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
         self.assertTrue(res, msg=msg)
@@ -819,8 +819,8 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_long_double_2(self):
-        c_type = real[9]
-        value = c_type[-1] + (c_type[-2] + 1 - c_type[-1]) // 4 * 2
+        c_type = real[2]
+        value = 1 / 9
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
         self.assertTrue(res, msg=msg)
@@ -828,8 +828,8 @@ class GlobalTestCase(unittest.TestCase):
         self.assertTrue(res, msg=msg)
 
     def test_long_double_3(self):
-        c_type = real[9]
-        value = c_type[-1] + (c_type[-2] + 1 - c_type[-1]) // 4 * 3
+        c_type = real[2]
+        value = c_type[-2] // 2
         fun.generate(c_type, value)
         res, msg = fun.compile_run()
         self.assertTrue(res, msg=msg)

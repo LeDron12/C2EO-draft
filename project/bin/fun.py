@@ -1,22 +1,26 @@
 import os
-import sys
 import difflib
 from system_vars import *
 
 
 def compile_run():
-    if os.system(' '.join(['gcc', f'{filename2}', '-w', f'>>{logfile1}', f'2>>{logfile2}'])) != 0:
+    if os.system(' '.join(
+            ['gcc', path + filename2, '-o', path + c_bin, '-w', f'>>{path}{logfile1}', f'2>>{path}{logfile2}'])) != 0:
         return False, 'can not compile c-code'
-    if os.system(' '.join(['./a.out', f'>{c_out}', f'2>>{logfile2}'])) != 0:
+    if os.system(' '.join([f'./{path}{c_bin}', f'>{path}{c_out}', f'2>>{path}{logfile2}'])) != 0:
         return False, 'can not run c-code'
-    if os.system(' '.join([launcher, f'{filename1}', f'>>{logfile1}', f'2>>{logfile2}'])) != 0:
+    if os.system(' '.join([path + launcher, f'{path}{filename1}', f'>>{path}{logfile1}', f'2>>{path}{logfile2}'])) != 0:
         return False, 'can not transpile c-code to eo-code'
-    if os.system(' '.join(['mvn -f', resultDir, 'clean compile', f'>>{logfile1}', f'2>>{logfile2}'])) != 0:
+    if os.system(' '.join(
+            ['mvn -f', path + resultDir, 'clean compile', f'>>{path}{logfile1}', f'2>>{path}{logfile2}'])) != 0:
         return False, 'can not compile eo-code using mvn'
-    # todo: show global.eo
-    if os.system(' '.join(['java', '-cp', f'{resultDir}/target/classes:'
-                                          f'{resultDir}/target/eo-runtime.jar',
-                           'org.eolang.Main', 'c2eo.app', f'>{eo_out}', f'2>>{logfile2}'])) != 0:
+    # to log
+    print("\nRESULT:")
+    with open(f'{path}{resultDir}/eo/c2eo/src/global.eo', 'r') as glob:
+        print(glob.read())
+    if os.system(' '.join(['java', '-cp', f'{path}{resultDir}/target/classes:'
+                                          f'{path}{resultDir}/target/eo-runtime.jar',
+                           'org.eolang.Main', 'c2eo.app', f'>{path}{eo_out}', f'2>>{path}{logfile2}'])) != 0:
         return False, 'can not run eo-code'
     return True, 'too easily'
 
@@ -24,29 +28,33 @@ def compile_run():
 def generate(c_type, value, static=False):
     code = '\n'.join([f'{"static " if static else ""}{c_type[1]} var = {value};',
                       'int main() {', '\t%svar%s;', '\treturn 0;', '}'])
-    with open(filename1, 'w') as fout:
+    with open(path + filename1, 'w') as fout:
         print(code % ('', ''),
               file=fout)
-    # todo: show code1
+    # to log
+    print("\nCODE#1:")
+    print(code % ('', ''))
+
     code = '\n'.join(['#include "stdio.h"', code])
-    with open(filename2, 'w') as fout:
+    with open(path + filename2, 'w') as fout:
         print(code % (f'printf("%{c_type[0]}\\n", ', ')'),
               file=fout)
-    # todo: show code2
+    # to log
+    print("\nCODE#2:")
+    print(code % (f'printf("%{c_type[0]}\\n", ', ')'))
 
 
 def compare():
-    with open(c_out, 'r') as f1:
-        with open(eo_out, 'r') as f2:
+    with open(path + c_out, 'r') as f1:
+        with open(path + eo_out, 'r') as f2:
             diff = difflib.unified_diff(
                 f1.readlines(),
                 f2.readlines(),
                 fromfile=c_out,
                 tofile=eo_out,
             )
-            # todo: show diff
-            # print(list(diff))
-            # for line in diff:
-            #    print(line)
-            # self.assertEqual(len(list(diff)), 0, msg='there are some diffs:')
+            # to log
+            print("\nDIFF:")
+            for line in diff:
+                print(line)
             return len(list(diff)) == 0, 'there are some diffs'

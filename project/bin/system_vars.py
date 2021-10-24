@@ -17,13 +17,15 @@ real = [
     ['Lf', 'long double', 1.79769e+308, -1.79769e+308]
 ]
 
-directory = 'env'
+path = ''
+directory = './env'
 filename1 = f'{directory}/code1.c'
 filename2 = f'{directory}/code2.c'
 logfile1 = f'{directory}/log1.txt'
 logfile2 = f'{directory}/log2.txt'
 eo_out = f'{directory}/eo_out.txt'
 c_out = f'{directory}/c_out.txt'
+c_bin = f'{directory}/a.out'
 launcher = '../bin/launcher.py'
-fulllog = None
+full_log = None
 resultDir = "../../result"
