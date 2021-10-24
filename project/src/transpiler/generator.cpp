@@ -13,7 +13,7 @@
 SpaceGen* AbstractGen::globalSpaceGenPtr = nullptr;
 SpaceGen* AbstractGen::staticSpaceGenPtr = nullptr;
 std::string AbstractGen::filename = "";
-std::map<int64_t ,std::string> AbstractGen::identifiers = std::map<int64_t,std::string>();
+std::map<uint64_t ,std::string> AbstractGen::identifiers = std::map<uint64_t,std::string>();
 
 
 

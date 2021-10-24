@@ -15,7 +15,7 @@ struct AbstractGen {
     static SpaceGen* globalSpaceGenPtr;
     static SpaceGen* staticSpaceGenPtr;
     static std::string filename;
-    static std::map<int64_t ,std::string> identifiers;
+    static std::map<uint64_t ,std::string> identifiers;
 
     virtual void Generate(std::string &str) = 0;
     virtual void GenValue(std::string &str) {}

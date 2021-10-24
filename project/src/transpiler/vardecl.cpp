@@ -1,4 +1,4 @@
-//#define  VAR_DECL_INFO
+#define  VAR_DECL_INFO
 // Функции, используемые при анализе переменных
 
 #include "vardecl.h"
@@ -10,7 +10,7 @@ std::string getIntTypeByVar(const VarDecl *VD);
 void getVarDeclParameters(const VarDecl *VD) {
     // Имя переменной
     auto varName = VD->getNameAsString();
-    auto varID = VD->getID();
+    auto varID = reinterpret_cast<uint64_t>(VD);
 #ifdef VAR_DECL_INFO
     llvm::outs() << "Name of Variable: " << varName << "\n";
     llvm::outs() << "  Var Kind Name: " << VD->getDeclKindName() << "\n";
@@ -298,10 +298,7 @@ void initValueAnalysis(const VarDecl *VD, std::string &str) {
         if(initVal->isInt()) {
             auto intValue = initVal->getInt().getExtValue();
             //llvm::outs() << intValue;
-            if(typePtr->isBooleanType()) {
-                if(intValue == 0) {str = "false";}
-                else {str = "true";}
-            } else if(typePtr->isCharType()) {
+            if(typePtr->isCharType()) {
                 str = "'";
                 str += char(intValue);
                 str += "'";
@@ -333,11 +330,9 @@ void initZeroValueAnalysis(const VarDecl *VD, std::string &str) {
     // Анализ размера переменной для определения разновидности данных
     auto typeInfo = VD->getASTContext().getTypeInfo(qualType);
     auto size = typeInfo.Width;
-    if(typePtr->isBooleanType()) {
-        str = "false";
-    } else if(typePtr->isCharType()) {
+    if(typePtr->isCharType()) {
         str = "'\\0'";
-    } else if (typePtr->isIntegerType()){
+    } else if (typePtr->isIntegerType() || typePtr->isBooleanType()){
         str = "0";
     } else if(typePtr->isRealFloatingType()) {
         str = "0.0";
