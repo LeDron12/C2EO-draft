@@ -1,6 +1,5 @@
 import os
 import difflib
-import inspect
 import sys
 
 from system_vars import *
@@ -59,7 +58,7 @@ def compare():
             # to log
             print("\nDIFF:")
             for line in diff:
-                print(line)
+                print(line, end='')
             return len(list(diff)) == 0, 'there are some diffs'
 
 

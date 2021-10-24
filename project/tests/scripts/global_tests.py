@@ -1,10 +1,6 @@
-import sys
-
 from utests import unittest
 from system_vars import *
 import fun
-
-import inspect
 
 
 class GlobalTestCase(unittest.TestCase):
