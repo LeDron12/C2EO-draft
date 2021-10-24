@@ -22,4 +22,3 @@ c_int32 0 > g_zero
     ^.g_i.write (((^.g_x.less (^.g_zero)).mul (^.g_x.neg)).add ((^.g_x.geq (^.g_zero)).mul (^.g_x)))
     ^.g_j.write (((^.g_y.less (^.g_zero)).mul (^.g_y.neg)).add ((^.g_y.geq (^.g_zero)).mul (^.g_y)))
 main arg > @
-

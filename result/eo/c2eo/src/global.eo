@@ -10,7 +10,6 @@
 +alias c2eo.ctypes.c_int64
 
 [arg] > global
-
   c_int32 2 > g_a
   [arg] > main
     seq > @
