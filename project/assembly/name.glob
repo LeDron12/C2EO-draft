@@ -6,4 +6,3 @@ c_int32 2 > g_a
       stdout (^.g_a.as-string)
       stdout "\n"
 main arg > @
-
