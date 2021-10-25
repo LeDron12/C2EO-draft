@@ -1,0 +1,35 @@
++package c2eo.src
++alias stdout org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
+
++alias c2eo.ctypes.c_bool
++alias c2eo.ctypes.c_char
++alias c2eo.ctypes.c_float64
++alias c2eo.ctypes.c_int16
++alias c2eo.ctypes.c_int32
++alias c2eo.ctypes.c_int64
+
+[arg] > global
+
+  c_float64 0.0 > g_d01
+  c_float64 8.000000 > g_d02
+  c_float64 3.140000 > g_d03
+  [arg] > main
+    seq > @
+      seq
+        stdout (^.g_d01.as-string)
+        stdout "\n"
+      seq
+        stdout (^.g_d02.as-string)
+        stdout "\n"
+      seq
+        stdout (^.g_d03.as-string)
+        stdout "\n"
+      seq
+        stdout (^.static01.s_d04.as-string)
+        stdout "\n"
+  main arg > @
+
+
+  [] > static01
+    c_float64 3.140000 > s_d04
