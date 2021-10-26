@@ -10,12 +10,12 @@
 +alias c2eo.ctypes.c_int64
 
 [arg] > global
-  c_int32 2 > g_a
+
+  c_char 'n' > g_var
   [arg] > main
     seq > @
-      ^.g_a.write (^.g_a.add (2))
       seq
-        stdout (^.g_a.as-string)
+        stdout (^.g_var.as-string)
         stdout "\n"
   main arg > @
 

@@ -16,6 +16,6 @@
 
   mem.write > write
 
-  sprintf "%b" $ > as-string
+  sprintf "%d" $ > as-string
 
   "bool" > type
