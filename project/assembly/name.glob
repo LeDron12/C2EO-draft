@@ -1,4 +1,5 @@
 c_int32 2 > g_a
+c_float64 0.0 > g_y
 [arg] > main
   seq > @
     ^.g_a.write (^.g_a.add (4))
@@ -6,3 +7,4 @@ c_int32 2 > g_a
       stdout (^.g_a.as-string)
       stdout "\n"
 main arg > @
+
