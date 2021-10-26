@@ -11,11 +11,21 @@
 
 [arg] > global
 
-  c_char 'n' > g_var
+  c_int32 10 > g_b
+  c_int32 30 > g_c
   [arg] > main
     seq > @
+      ^.g_b.write (^.g_b.add (^.g_c))
       seq
-        stdout (^.g_var.as-string)
+        stdout (^.g_b.as-string)
+        stdout "\n"
+      ^.g_c.write (^.g_b.sub (^.g_c))
+      seq
+        stdout (^.g_c.as-string)
+        stdout "\n"
+      ^.g_b.write (^.g_b.sub (^.g_c))
+      seq
+        stdout (^.g_b.as-string)
         stdout "\n"
   main arg > @
 

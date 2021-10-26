@@ -37,8 +37,10 @@ project/bin/c2eo
 **/src/result/**
 *.cmake
 project/bin/*.eo
-project/bin/*.glob
-project/bin/*.stat
+*.glob
+*.stat
+*gloal.eo
+
 CMakeCache.txt
 Makefile
 Makefile2
