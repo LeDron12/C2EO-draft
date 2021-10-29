@@ -6,7 +6,15 @@ import sys
 if __name__ == '__main__':
     # Фиксация текущего каталога
     currentDir = os.getcwd()
-    # Получение списка каталогов в каждом из которых содержится один тест
+
+    # Получение пути до работающего скрипта
+    myPath = os.path.realpath(__file__)
+    #print(f'Splitter Directory is: {myPath}')
+    tmpDir = myPath if os.path.isdir(myPath) else os.path.dirname(myPath)
+    # Изменение рабочего каталога на каталог скрипта
+    os.chdir(tmpDir)
+
+   # Получение списка каталогов в каждом из которых содержится один тест
     testedFileList = os.listdir('./tests')
     print(testedFileList)
 
@@ -15,7 +23,7 @@ if __name__ == '__main__':
     print('Test Started')
     testResults = [] # Информация о результататах
     for testedFile in testedFileList:
-        value = os.system(currentDir + '/testOne.py ' + testedFile)
+        value = os.system(tmpDir + '/testOne.py ' + testedFile)
         testCount += 1
         if value == 0:
             message = 'PASS'
@@ -30,3 +38,4 @@ if __name__ == '__main__':
 
     print(f'The End. {testCount} tests evaluated, {passCount} tests passed')
 
+    os.chdir(currentDir)
